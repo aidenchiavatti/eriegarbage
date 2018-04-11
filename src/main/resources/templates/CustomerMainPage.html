@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Main Page</title>
+</head>
+<body>
+<p th:text="'Pickup Time: ' + ${pickupTime}">Pickup Time</p>
+
+<button id="viewAccountButton">View Account Info</button>
+<button>View Bill</button>
+<button>File Complaint</button>
+</body>
+<script>
+$(document).ready(function(){
+    $("#viewAccountButton").click(function() {
+        window.location.href = "/viewAccountPage";
+    })
+})
+</script>
+</html>

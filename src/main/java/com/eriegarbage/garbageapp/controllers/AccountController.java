@@ -15,7 +15,7 @@ public class AccountController {
     @RequestMapping(value = "/")
     public ModelAndView getCustomerMainPage() {
         ModelAndView mv = new ModelAndView("CustomerMainPage");
-        mv.addObject("pickupTime", accountManager.getPickupTime("username"));
+        mv.addObject("pickupTime", accountManager.getAccount("username").getPickupTime());
         return mv;
     }
 

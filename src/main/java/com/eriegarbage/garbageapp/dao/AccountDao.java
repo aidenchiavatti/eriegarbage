@@ -1,5 +1,10 @@
 package com.eriegarbage.garbageapp.dao;
 
+import com.eriegarbage.garbageapp.models.Account;
+
 public interface AccountDao {
-    public String getPickupTime(String username);
+
+    void createAccount(Account account);
+
+    Account getAccount(String username);
 }

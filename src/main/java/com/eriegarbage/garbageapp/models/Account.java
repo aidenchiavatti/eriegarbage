@@ -12,6 +12,7 @@ public class Account {
     private String lastName;
     private String userName;
     private List<Bill> bills;
+    private String pickupTime;
     private boolean isAdmin;
     private boolean isSuspendable;
 }

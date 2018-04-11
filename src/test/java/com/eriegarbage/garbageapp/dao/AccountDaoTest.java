@@ -1,16 +1,14 @@
 package com.eriegarbage.garbageapp.dao;
 
-import com.eriegarbage.garbageapp.AccountDaoTestImpl;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AccountDaoTest {
 
-    private AccountDaoTestImpl accountDao = new AccountDaoTestImpl();
+    private AccountDao accountDao = new AccountDaoImpl();
 
     @Test
-    public void getPickupTime() {
-        assertEquals("Monday, 12AM", accountDao.getPickupTime("username"));
+    public void getAccount() {
     }
 }

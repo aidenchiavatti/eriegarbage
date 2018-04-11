@@ -1,7 +1,11 @@
 package com.eriegarbage.garbageapp.models;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Account {
     private int accountID;
     private String firstName;

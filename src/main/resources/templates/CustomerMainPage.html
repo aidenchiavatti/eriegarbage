@@ -10,12 +10,15 @@
 
 <button id="viewAccountButton">View Account Info</button>
 <button>View Bill</button>
-<button>File Complaint</button>
+<button id="fileComplaintButton">File Complaint</button>
 </body>
 <script>
 $(document).ready(function(){
     $("#viewAccountButton").click(function() {
         window.location.href = "/viewAccountPage";
+    })
+    $("#fileComplaintButton").click(function () {
+        window.location.href = "/fileComplaintPage"
     })
 })
 </script>

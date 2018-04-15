@@ -1,6 +1,7 @@
 package com.eriegarbage.garbageapp.controllers;
 
 import com.eriegarbage.garbageapp.managers.AccountManager;
+import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

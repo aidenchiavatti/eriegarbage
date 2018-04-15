@@ -1,7 +1,6 @@
 package com.eriegarbage.garbageapp.managers;
 
 import com.eriegarbage.garbageapp.dao.AccountDao;
-import com.eriegarbage.garbageapp.dao.AccountDaoImpl;
 import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +15,10 @@ public class AccountManager {
     }
 
     public void createAccount(Account account) {
-        accountDao.createAccount(account);
+        accountDao.save(account);
     }
 
     public Account getAccount(String username) {
-        return accountDao.getAccount(username);
+        return accountDao.getAccountByUserName(username);
     }
 }

@@ -1,10 +1,9 @@
 package com.eriegarbage.garbageapp.dao;
 
 import com.eriegarbage.garbageapp.models.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountDao {
+public interface AccountDao extends JpaRepository<Account, Long> {
 
-    void createAccount(Account account);
-
-    Account getAccount(String username);
+    Account getAccountByUserName(String username);
 }

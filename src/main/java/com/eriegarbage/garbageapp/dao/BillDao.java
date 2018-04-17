@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface BillDao extends JpaRepository<Bill, Long> {
 
    // @Query("insert into Billing (amount) value = (Bill)")
-    //@Query("select b from Bill where Bill.billID =")
+    @Query("select b from Bill b where b.dueDate > current_date")
+    public Bill getBill();
     //public void createBill(Bill billInfo);
 }

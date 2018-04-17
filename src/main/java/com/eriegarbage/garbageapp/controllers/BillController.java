@@ -14,11 +14,12 @@ public class BillController {
 
     @Autowired
     BillingManager billingManager;
-
+//TODO not based off of customer
     @RequestMapping(value = "/billPage")
     public ModelAndView getBillPage() {
         ModelAndView mv = new ModelAndView("BillPage");
-       // mv.addObject("accountInfo", "info");
+        mv.addObject("BillDueDate", billingManager.getBill().getDueDate());
+        mv.addObject("BillTotalDue", billingManager.getBill().getTotal());
         return mv;
     }
 }

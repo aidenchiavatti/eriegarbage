@@ -5,4 +5,7 @@ $(document).ready(function(){
     $("#fileComplaintButton").click(function () {
         window.location.href = "/fileComplaintPage"
     })
+    $("#billButton").click(function () {
+        window.location.href = "/billPage"
+    })
 })

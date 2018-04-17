@@ -1,11 +1,25 @@
 package com.eriegarbage.garbageapp.models;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+
+@Entity
 public class Bill {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int billID;
+    @OneToOne
     private Payment payment;
     private String dueDate;
     private double total;
-    private ArrayList<Dispute> disputes;
+    @OneToMany
+    private List<Dispute> disputes;
 }

@@ -15,7 +15,9 @@ import javax.persistence.Id;
 
 @Entity
 public class Dispute {
-<<<<<<< HEAD
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int disputeID;
     private String dispute;
     private String response;
 
@@ -23,19 +25,7 @@ public class Dispute {
         return dispute;
     }
 
-    public void addResponse(String r){
+    public void addResponse(String r) {
         response = r;
-=======
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int disputeID;
-
-    private String dispute;
-    private String response;
-
-    public void addResponse(String r)
-    {
-
->>>>>>> ca86f89229eae0d45a6b2a1d4a5d3ab2e519682f
     }
 }

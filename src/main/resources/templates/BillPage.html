@@ -5,6 +5,7 @@
     <title>Bill Page</title>
 </head>
 <body>
-<p>Billing</p>
+<p th:text="'Billing Due Date: ' +${BillDueDate}">Billing</p>
+<p th:text="'Billing Total Due: ' +${BillTotalDue}"></p>
 </body>
 </html>

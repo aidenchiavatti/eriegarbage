@@ -2,6 +2,7 @@ package com.eriegarbage.garbageapp;
 
 import com.eriegarbage.garbageapp.dao.AccountDao;
 import com.eriegarbage.garbageapp.dao.BillDao;
+import com.eriegarbage.garbageapp.dao.PaymentDao;
 import com.eriegarbage.garbageapp.models.Account;
 import com.eriegarbage.garbageapp.models.Bill;
 import com.eriegarbage.garbageapp.models.Payment;
@@ -21,24 +22,22 @@ public class GarbageappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AccountDao accountDao, BillDao billDao) {
+	public CommandLineRunner demo(AccountDao accountDao, BillDao billDao, PaymentDao paymentDao) {
 		return (args) -> {
 			Account account = new Account();
 			Bill bill = new Bill();
-			//TODO do we need paymentDao
-			//Payment payment = new Payment();
-			//payment.setDate("2018-12-11");
-			//payment.setPaymentTotal(55.00);
+			Payment payment = new Payment();
+			payment.setDate("2018-12-11");
+			payment.setPaymentTotal(55.00);
 			bill.setDueDate("2018-12-12");
 			bill.setTotal(55.00);
-			//bill.setPayment(payment);
+			bill.setPayment(payment);
 			List<Bill> bills = new ArrayList<>();
 			bills.add(bill);
 			account.setUserName("username");
 			account.setPickupTime("Monday, 11 PM");
-			//TODO it needs more for mapping
-			//account.setBills(bills);
-
+			account.setBills(bills);
+            paymentDao.save(payment);
 			billDao.save(bill);
 			accountDao.save(account);
 		};

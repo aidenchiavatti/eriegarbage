@@ -16,7 +16,6 @@ public class BillingManager {
     public BillingManager(BillDao billDao){ this.billDao = billDao; }
 
     public Bill getBill(){
-        return new Bill();
-       // return billDao.getBill()
+        return billDao.getBill();
     }
 }

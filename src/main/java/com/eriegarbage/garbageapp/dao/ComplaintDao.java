@@ -11,5 +11,9 @@ public interface ComplaintDao extends JpaRepository<Complaint, Long> {
    // void updateMarkComplaint(Complaint c); Note: user .save(Complaint) instead
 
     @Query("select c from Complaint c where c.viewed = false")
+    //@Query("update Complaint c set c.viewed = true where c.complaintID = complaint.complaintID")
     ArrayList<Complaint> getUnreadComplaints();
+
+    //so i don't need this??
+    //public void updateMarkedComplaint(Complaint complaint);
 }

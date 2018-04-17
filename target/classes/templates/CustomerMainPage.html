@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="customermain.js"></script>
+
+    <title>Main Page</title>
+</head>
+<body>
+<p th:text="'Pickup Time: ' + ${pickupTime}">Pickup Time</p>
+
+<button id="viewAccountButton">View Account Info</button>
+<button id="billButton">View Bill</button>
+<button id="fileComplaintButton">File Complaint</button>
+</body>
+</html>

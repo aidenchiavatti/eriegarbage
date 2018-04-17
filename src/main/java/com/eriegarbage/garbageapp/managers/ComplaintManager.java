@@ -22,4 +22,6 @@ public class ComplaintManager {
         complaintDao.save(complaint);
     }
 
+    //public void markComplaintAsViewed(Complaint complaint) { complaintDao.updateMarkedComplaint(complaint); }
+
 }

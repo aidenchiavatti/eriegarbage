@@ -19,7 +19,8 @@ public class Account {
     private String firstName;
     private String lastName;
     private String userName;
-    @OneToMany
+    private String password;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Bill> bills;
     private String pickupTime;
     private boolean isAdmin;

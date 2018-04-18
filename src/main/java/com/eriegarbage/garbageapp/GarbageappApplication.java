@@ -3,6 +3,8 @@ package com.eriegarbage.garbageapp;
 import com.eriegarbage.garbageapp.dao.AccountDao;
 import com.eriegarbage.garbageapp.dao.BillDao;
 import com.eriegarbage.garbageapp.dao.PaymentDao;
+import com.eriegarbage.garbageapp.dto.AccountDto;
+import com.eriegarbage.garbageapp.managers.AccountManager;
 import com.eriegarbage.garbageapp.models.Account;
 import com.eriegarbage.garbageapp.models.Bill;
 import com.eriegarbage.garbageapp.models.Payment;
@@ -10,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +26,8 @@ public class GarbageappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AccountDao accountDao, BillDao billDao, PaymentDao paymentDao) {
+	public CommandLineRunner demo(AccountDao accountDao, BillDao billDao, PaymentDao paymentDao, AccountManager accountManager) {
 		return (args) -> {
-			Account account = new Account();
 			Bill bill = new Bill();
 			Payment payment = new Payment();
 			payment.setDate("2018-12-11");
@@ -34,12 +37,24 @@ public class GarbageappApplication {
 			bill.setPayment(payment);
 			List<Bill> bills = new ArrayList<>();
 			bills.add(bill);
-			account.setUserName("username");
+
+			AccountDto accountDto = new AccountDto();
+			accountDto.setFirstName("Test");
+			accountDto.setLastName("User");
+			accountDto.setPassword("password");
+			accountDto.setMatchingPassword("password");
+			accountDto.setUsername("user");
+			accountManager.registerNewAccount(accountDto);
+
+			Account account = accountDao.getAccountByUserName("user");
 			account.setPickupTime("Monday, 11 PM");
 			account.setBills(bills);
-            paymentDao.save(payment);
-			billDao.save(bill);
 			accountDao.save(account);
 		};
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }

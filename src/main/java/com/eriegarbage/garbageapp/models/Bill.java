@@ -16,7 +16,7 @@ public class Bill {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int billID;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
     private String dueDate;
     private double total;

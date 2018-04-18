@@ -20,8 +20,10 @@ public class Account {
     private String lastName;
     private String userName;
     private String password;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Bill> bills;
+
     private String pickupTime;
     private boolean isAdmin;
     private boolean isSuspendable;

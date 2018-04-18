@@ -24,11 +24,17 @@ public class AccountController {
     public ModelAndView getCustomerMainPage() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
-            System.out.println("This is a user");
+            return new ModelAndView("redirect:/admin");
         }
 
         ModelAndView mv = new ModelAndView("CustomerMainPage");
         mv.addObject("pickupTime", accountManager.getAccount(auth.getName()).getPickupTime());
+        return mv;
+    }
+
+    @RequestMapping(value = "/admin")
+    public ModelAndView getAdminMainPage() {
+        ModelAndView mv = new ModelAndView("AdminMainPage");
         return mv;
     }
 

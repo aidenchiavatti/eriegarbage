@@ -23,6 +23,13 @@ public class ComplaintController {
         return mv;
     }
 
+    @RequestMapping(value = "/viewComplaintPage")
+    public ModelAndView getViewComplaintsPage() {
+        ModelAndView mv = new ModelAndView("ViewComplaints");
+        mv.addObject("complaints", complaintManager.readComplaints());
+        return mv;
+    }
+
     @RequestMapping(value = "submitComplaint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void submitComplaint(@RequestParam("input") String complaintString) {
@@ -36,8 +43,9 @@ public class ComplaintController {
         return complaintManager.readComplaints();
     }
 
+    /*
     @RequestMapping(value = "/markComplaintAsViewed")
     @ResponseStatus(value = HttpStatus.OK)
-    public void markComplaintAsViewed() { complaintManager.markComplaintAsViewed(); }
+    public void markComplaintAsViewed() { complaintManager.markComplaintAsViewed(); }*/
 
 }

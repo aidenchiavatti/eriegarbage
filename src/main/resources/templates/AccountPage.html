@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Account Page</title>
 </head>
 <body>
-<p>This is the account page!!!! :O</p>
+<div>
+    <p th:text="'Username: '+${userName}"></p>
+</div>
+<div>
+    <p th:text="'First Name: '+${accountInfo.getFirstName()}"></p>
+</div>
+<div>
+    <p th:text="'Last Name: '+${accountInfo.getLastName()}"></p>
+</div>
+<div>
+    <p th:text="'Address: '+${accountInfo.getAddress()}"></p>
+</div>
 <button>Edit</button>
 <button>Cancel Account</button>
 </body>

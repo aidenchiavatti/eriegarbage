@@ -43,9 +43,7 @@ public class AccountController {
         ModelAndView mv = new ModelAndView("AccountPage");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         mv.addObject("userName", auth.getName());
-        mv.addObject("firstName", accountManager.getAccount(auth.getName()).getFirstName());
-        mv.addObject("lastName", accountManager.getAccount(auth.getName()).getLastName());
-        mv.addObject("address", accountManager.getAccount(auth.getName()).getAddress());
+        mv.addObject("accountInfo", accountManager.getAccount(auth.getName()));
         return mv;
     }
 

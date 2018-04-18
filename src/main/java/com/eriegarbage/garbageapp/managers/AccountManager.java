@@ -32,6 +32,7 @@ public class AccountManager {
         account.setUserName(dto.getUsername());
         account.setFirstName(dto.getFirstName());
         account.setLastName(dto.getLastName());
+        account.setAddress(dto.getAddress());
         account.setSuspended(false);
         account.setAdmin(false);
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -45,6 +46,7 @@ public class AccountManager {
         account.setUserName(dto.getUsername());
         account.setFirstName(dto.getFirstName());
         account.setLastName(dto.getLastName());
+        account.setAddress(dto.getAddress());
         account.setAdmin(true);
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         account.setPickupTime("Pickup time not set yet");

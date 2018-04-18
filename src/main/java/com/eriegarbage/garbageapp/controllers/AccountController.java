@@ -1,15 +1,16 @@
 package com.eriegarbage.garbageapp.controllers;
 
 import com.eriegarbage.garbageapp.dto.AccountDto;
+import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
+import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -45,6 +46,23 @@ public class AccountController {
         mv.addObject("userName", auth.getName());
         mv.addObject("accountInfo", accountManager.getAccount(auth.getName()));
         return mv;
+    }
+
+    @RequestMapping(value = "/viewAccountPageEdit")
+    public ModelAndView getAccountPageEdit() {
+        ModelAndView mv = new ModelAndView("AccountPageEdit");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        mv.addObject("userName", auth.getName());
+        mv.addObject("accountInfo", accountManager.getAccount(auth.getName()));
+        return mv;
+    }
+
+    @RequestMapping(value = "/submitAccountEdit", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void submitAccountEdit(@RequestBody AccountEditDto accountInfo) {
+        System.out.println(accountInfo);
+      //  Complaint complaint = new Complaint(complaintString);
+    //    complaintManager.submitComplaint(complaint);
     }
 
     @RequestMapping(value = "/login")

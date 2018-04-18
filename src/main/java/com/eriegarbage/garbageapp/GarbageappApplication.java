@@ -46,6 +46,7 @@ public class GarbageappApplication {
 			AccountDto accountDto = new AccountDto();
 			accountDto.setFirstName("Test");
 			accountDto.setLastName("User");
+			accountDto.setAddress("123 Main Street");
 			accountDto.setPassword("password");
 			accountDto.setMatchingPassword("password");
 			accountDto.setUsername("user");

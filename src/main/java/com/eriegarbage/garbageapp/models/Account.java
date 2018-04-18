@@ -19,6 +19,7 @@ public class Account {
     private String firstName;
     private String lastName;
     private String userName;
+    private String address;
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -26,5 +27,5 @@ public class Account {
 
     private String pickupTime;
     private boolean isAdmin;
-    private boolean isSuspendable;
+    private boolean isSuspended;
 }

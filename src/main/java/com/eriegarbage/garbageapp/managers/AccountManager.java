@@ -32,6 +32,7 @@ public class AccountManager {
         account.setUserName(dto.getUsername());
         account.setFirstName(dto.getFirstName());
         account.setLastName(dto.getLastName());
+        account.setSuspended(false);
         account.setAdmin(false);
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         account.setPickupTime("Pickup time not set yet");

@@ -41,7 +41,11 @@ public class AccountController {
     @RequestMapping(value = "/viewAccountPage")
     public ModelAndView getAccountPage() {
         ModelAndView mv = new ModelAndView("AccountPage");
-        mv.addObject("accountInfo", "info");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        mv.addObject("userName", auth.getName());
+        mv.addObject("firstName", accountManager.getAccount(auth.getName()).getFirstName());
+        mv.addObject("lastName", accountManager.getAccount(auth.getName()).getLastName());
+        mv.addObject("address", accountManager.getAccount(auth.getName()).getAddress());
         return mv;
     }
 

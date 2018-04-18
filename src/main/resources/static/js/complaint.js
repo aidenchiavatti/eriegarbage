@@ -1,9 +1,10 @@
 $(document).ready(function(){
-    $('#submitComplaintButton').click(function(){
+    $('#submitComplaintButton').click(function(e){
+        e.preventDefault();
         $.ajax({
             url:'/submitComplaint',
             type:'post',
-            data:$('#complaintInput').serialize(),
+            data:$('#submitComplaintForm').serialize(),
             success:function(){
                 alert("Submitted Complaint");
             }

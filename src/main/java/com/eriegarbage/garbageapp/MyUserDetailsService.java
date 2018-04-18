@@ -41,12 +41,16 @@ public class MyUserDetailsService implements UserDetailsService {
                 (account.getUserName(),
                         account.getPassword(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked,
-                        getAuthorities());
+                        getAuthorities(account));
     }
 
-    private static List<GrantedAuthority> getAuthorities () {
+    private static List<GrantedAuthority> getAuthorities (Account account) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
+        if(account.isAdmin()) {
+            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("USER"));
+        }
         return authorities;
     }
 }

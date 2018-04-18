@@ -7,7 +7,7 @@
 <body>
     <div th:each="bill: ${bills}">
         <p th:text="'Billing Due Date: ' +${bill.getDueDate()}">Billing</p>
-        <p th:text="'Billing Total Due: ' +${bill.getTotal()}"></p>
+        <p th:text="'Billing Total Due: ' +${bill.getTotal()}"></p><br>
     </div>
 </body>
 </html>

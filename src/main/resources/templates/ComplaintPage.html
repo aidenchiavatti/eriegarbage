@@ -7,10 +7,12 @@
     <script src="/js/complaint.js"></script>
 </head>
 <body>
+<form id="submitComplaintForm">
     <label for="complaintInput">Complaint</label>
     <input id="complaintInput" name="input">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <button id="submitComplaintButton">Submit</button>
-
+</form>
     <br>
     <button id="viewComplaintsButton">View Complaints Test (console)</button>
 </body>

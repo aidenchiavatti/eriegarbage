@@ -38,6 +38,11 @@ public class GarbageappApplication {
 			List<Bill> bills = new ArrayList<>();
 			bills.add(bill);
 
+			bill = new Bill();
+			bill.setDueDate("2018-11-11");
+			bill.setTotal(20.00);
+			bills.add(bill);
+
 			AccountDto accountDto = new AccountDto();
 			accountDto.setFirstName("Test");
 			accountDto.setLastName("User");
@@ -45,6 +50,14 @@ public class GarbageappApplication {
 			accountDto.setMatchingPassword("password");
 			accountDto.setUsername("user");
 			accountManager.registerNewAccount(accountDto);
+
+			accountDto = new AccountDto();
+			accountDto.setFirstName("Admin");
+			accountDto.setLastName("Admin");
+			accountDto.setPassword("admin");
+			accountDto.setMatchingPassword("admin");
+			accountDto.setUsername("admin");
+			accountManager.registerNewAdmin(accountDto);
 
 			Account account = accountDao.getAccountByUserName("user");
 			account.setPickupTime("Monday, 11 PM");

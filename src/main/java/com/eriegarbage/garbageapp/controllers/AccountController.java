@@ -4,6 +4,7 @@ import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,8 +22,12 @@ public class AccountController {
 
     @RequestMapping(value = "/")
     public ModelAndView getCustomerMainPage() {
-        ModelAndView mv = new ModelAndView("CustomerMainPage");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
+            System.out.println("This is a user");
+        }
+
+        ModelAndView mv = new ModelAndView("CustomerMainPage");
         mv.addObject("pickupTime", accountManager.getAccount(auth.getName()).getPickupTime());
         return mv;
     }

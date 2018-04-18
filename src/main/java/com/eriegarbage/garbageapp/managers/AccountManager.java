@@ -37,4 +37,16 @@ public class AccountManager {
         account.setPickupTime("Pickup time not set yet");
         accountDao.save(account);
     }
+
+    //maybe get rid of this later...
+    public void registerNewAdmin(AccountDto dto) {
+        Account account = new Account();
+        account.setUserName(dto.getUsername());
+        account.setFirstName(dto.getFirstName());
+        account.setLastName(dto.getLastName());
+        account.setAdmin(true);
+        account.setPassword(passwordEncoder.encode(dto.getPassword()));
+        account.setPickupTime("Pickup time not set yet");
+        accountDao.save(account);
+    }
 }

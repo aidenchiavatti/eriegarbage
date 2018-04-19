@@ -6,8 +6,8 @@
 </head>
 <body>
     <div th:each="bill: ${bills}">
-        <p th:text="'Billing Due Date: ' +${bill.getDueDate()}">Billing</p>
-        <p th:text="'Billing Total Due: ' +${bill.getTotal()}"></p><br>
+        <p th:text="'Billing Due Date: ' +${bill.dueDate}">Billing</p>
+        <p th:text="'Billing Total Due: ' +${bill.total}"></p><br>
     </div>
 </body>
 </html>

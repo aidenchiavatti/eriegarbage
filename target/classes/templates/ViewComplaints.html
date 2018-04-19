@@ -10,7 +10,7 @@
 <p>Complaints</p>
 <div th:each="complaint: ${complaints}">
     <p th:text="${complaint.getComplaint()}">Complaints</p>
-    <button th:id="${complaint.getComplaintID()}">Mark Viewed</button>
+    <button th:id="${complaint.getComplaintID()}" class="viewedButtons">Mark Viewed</button>
 </div>
 </body>
 </html>

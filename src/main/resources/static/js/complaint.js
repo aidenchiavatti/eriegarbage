@@ -21,14 +21,15 @@ $(document).ready(function(){
         });
     });
 
-    /*$("#viewComplaintsButton").click(function(event) {
-        var id = event.target.id;
+    $(".viewedButtons").click(function(event) {
+        var obj = {};
+        obj.id = event.target.id;
         $.ajax({
-            url:'/viewComplaintPage',
-            type:'get',
-            success:function(result){
-                console.log(result);
+            url:'/markComplaintAsViewed?id=' + obj.id,
+            type:'post',
+            success:function(){
+                alert("Complaint Has Been Viewed");
             }
         });
-    });*/
+    });
 })

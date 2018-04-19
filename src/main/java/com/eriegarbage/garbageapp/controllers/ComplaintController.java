@@ -43,9 +43,11 @@ public class ComplaintController {
         return complaintManager.readComplaints();
     }
 
-    /*
-    @RequestMapping(value = "/markComplaintAsViewed")
+
+    @RequestMapping(value = "markComplaintAsViewed", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void markComplaintAsViewed() { complaintManager.markComplaintAsViewed(); }*/
+    public void markComplaintAsViewed(@RequestParam("id") int id) {
+        complaintManager.markComplaintAsViewed(id);
+    }
 
 }

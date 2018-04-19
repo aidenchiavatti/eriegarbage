@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/accountEdit.js"></script>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+</head>
+<body>
+<div>
+    <p th:text="'Username: '+${userName}"></p>
+</div>
+<form id="submitForm">
+    First name:<br>
+    <input th:value="${accountInfo.firstName}" id="firstName" type="text" name="firstName">
+    <br>
+    Last name:<br>
+    <input th:value="${accountInfo.lastName}" id="lastName" type="text" name="lastName">
+    <br>
+    Address:<br>
+    <input th:value="${accountInfo.address}" id="address" type="text" name="address">
+    <br><br>
+    <button id="submitButton">Submit</button>
+</form>
+</body>
+</html>

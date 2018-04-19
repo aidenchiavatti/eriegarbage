@@ -24,9 +24,13 @@ $(document).ready(function(){
     $(".viewedButtons").click(function(event) {
         var obj = {};
         obj.id = event.target.id;
+        var token = $("input[name='_csrf']").val();
         $.ajax({
             url:'/markComplaintAsViewed?id=' + obj.id,
             type:'post',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            },
             success:function(){
                 alert("Complaint Has Been Viewed");
             }

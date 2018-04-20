@@ -18,16 +18,12 @@ import java.util.List;
 @Service
 public class BillingManager {
     @Autowired
-    private AccountManager accountManager;
-
-    @Autowired
     private BillDao billDao;
 
     public BillingManager(BillDao billDao){ this.billDao = billDao; }
 
     public List<Bill> getBills(String username){
-        Account account = accountManager.getAccount(username);
-        return account.getBills();
+        return billDao.findBillsByUsername(username);
     }
 
     public void payBill(int billID, PaymentDto paymentDto) throws InvalidPaymentException {

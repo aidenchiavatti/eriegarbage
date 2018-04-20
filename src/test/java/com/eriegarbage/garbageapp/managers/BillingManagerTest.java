@@ -26,9 +26,6 @@ public class BillingManagerTest {
     @Autowired
     private BillingManager billingManager;
 
-    @Autowired
-    private AccountDao accountDao;
-
     @Test
     public void getBills() {
         List<Bill> bills = billingManager.getBills(DEFAULT_USERNAME);

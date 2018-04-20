@@ -2,6 +2,7 @@ package com.eriegarbage.garbageapp.managers;
 
 import com.eriegarbage.garbageapp.dao.AccountDao;
 import com.eriegarbage.garbageapp.dto.AccountDto;
+import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,10 @@ public class AccountManager {
     public Account getAccount(String username) {
         return accountDao.getAccountByUserName(username);
     }
+
+    public void accountEditInfo(AccountEditDto dto, Account a) { accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountID()); }
+
+    public void cancelAccount(Account a) { accountDao.deleteAccount(a.getAccountID()); }
 
     public void registerNewAccount(AccountDto dto) {
         Account account = new Account();

@@ -60,9 +60,16 @@ public class AccountController {
     @RequestMapping(value = "/submitAccountEdit", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void submitAccountEdit(@RequestBody AccountEditDto accountInfo) {
-        System.out.println(accountInfo);
-      //  Complaint complaint = new Complaint(complaintString);
-    //    complaintManager.submitComplaint(complaint);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        accountManager.accountEditInfo(accountInfo, accountManager.getAccount(auth.getName()));
+    }
+
+    @RequestMapping(value = "/cancelAccount", method = RequestMethod.GET)
+    public String cancelAccount() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        accountManager.cancelAccount(accountManager.getAccount(auth.getName()));
+        auth.setAuthenticated(false);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/login")

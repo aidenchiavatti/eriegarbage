@@ -15,7 +15,7 @@ $(document).ready(function(){
             },
             data:JSON.stringify(formData),
             success:function(){
-                alert("Submitted Account");
+                window.location.href = "/viewAccountPage"
             }
         });
     });

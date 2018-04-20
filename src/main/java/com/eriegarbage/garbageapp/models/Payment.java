@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int paymentID;
-    private String date;
+    private Date date;
     private double paymentTotal;
 
     public String generateReceipt(){

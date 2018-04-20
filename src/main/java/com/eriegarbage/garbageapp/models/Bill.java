@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -18,8 +19,16 @@ public class Bill {
     private int billID;
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
-    private String dueDate;
+    private Date dueDate;
     private double total;
     @OneToMany
     private List<Dispute> disputes;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    private Account account;
+
+    public void pay(Payment payment) {
+        this.total = 0;
+        this.payment = payment;
+    }
 }

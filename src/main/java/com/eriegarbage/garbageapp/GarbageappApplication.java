@@ -2,12 +2,10 @@ package com.eriegarbage.garbageapp;
 
 import com.eriegarbage.garbageapp.dao.AccountDao;
 import com.eriegarbage.garbageapp.dao.BillDao;
+import com.eriegarbage.garbageapp.dao.ComplaintDao;
 import com.eriegarbage.garbageapp.dao.PaymentDao;
-import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
 import com.eriegarbage.garbageapp.models.Account;
-import com.eriegarbage.garbageapp.models.Bill;
-import com.eriegarbage.garbageapp.models.Payment;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
+import static com.eriegarbage.garbageapp.TestConstants.*;
 
 @SpringBootApplication
 public class GarbageappApplication {
@@ -26,44 +25,20 @@ public class GarbageappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AccountDao accountDao, BillDao billDao, PaymentDao paymentDao, AccountManager accountManager) {
+	public CommandLineRunner demo(AccountDao accountDao, ComplaintDao complaintDao, AccountManager accountManager) {
 		return (args) -> {
-			Bill bill = new Bill();
-			Payment payment = new Payment();
-			payment.setDate("2018-12-11");
-			payment.setPaymentTotal(55.00);
-			bill.setDueDate("2018-12-12");
-			bill.setTotal(55.00);
-			bill.setPayment(payment);
-			List<Bill> bills = new ArrayList<>();
-			bills.add(bill);
+			accountManager.registerNewAccount(DEFAULT_ACCOUNT_DTO);
+			accountManager.registerNewAdmin(ADMIN_ACCOUNT_DTO);
 
-			bill = new Bill();
-			bill.setDueDate("2018-11-11");
-			bill.setTotal(20.00);
-			bills.add(bill);
-
-			AccountDto accountDto = new AccountDto();
-			accountDto.setFirstName("Test");
-			accountDto.setLastName("User");
-			accountDto.setAddress("123 Main Street");
-			accountDto.setPassword("password");
-			accountDto.setMatchingPassword("password");
-			accountDto.setUsername("user");
-			accountManager.registerNewAccount(accountDto);
-
-			accountDto = new AccountDto();
-			accountDto.setFirstName("Admin");
-			accountDto.setLastName("Admin");
-			accountDto.setPassword("admin");
-			accountDto.setMatchingPassword("admin");
-			accountDto.setUsername("admin");
-			accountManager.registerNewAdmin(accountDto);
-
-			Account account = accountDao.getAccountByUserName("user");
-			account.setPickupTime("Monday, 11 PM");
-			account.setBills(bills);
+			Account account = accountManager.getAccount(DEFAULT_USERNAME);
+			account.setPickupTime(DEFAULT_ACCOUNT.getPickupTime());
+			BILL_1.setAccount(account);
+			BILL_2.setAccount(account);
+			account.setBills(Arrays.asList(BILL_1, BILL_2));
 			accountDao.save(account);
+
+			complaintDao.save(COMPLAINT_1);
+			complaintDao.save(COMPLAINT_2);
 		};
 	}
 

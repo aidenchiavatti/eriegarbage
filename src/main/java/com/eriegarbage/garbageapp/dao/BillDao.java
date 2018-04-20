@@ -14,4 +14,5 @@ public interface BillDao extends JpaRepository<Bill, Long> {
 //    @Query("select b from Bill b where b.dueDate > current_date")
 //    public Bill getBill();
     //public void createBill(Bill billInfo);
+    Bill findByBillID(int billID);
 }

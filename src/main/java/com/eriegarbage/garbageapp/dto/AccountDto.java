@@ -29,4 +29,8 @@ public class AccountDto {
     @NotNull
     @NotEmpty
     private String address;
+
+    @NotNull
+    @NotEmpty
+    private String email;
 }

@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -18,13 +15,16 @@ import java.util.Date;
 public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int paymentID;
+    private Long paymentID;
     private Date date;
     private double paymentTotal;
+    @OneToOne
+    private Bill bill;
 
     public String generateReceipt(){
         //generate receipt and send to billing manager
-        return "";
+        return "Payment ID: " + paymentID + "\nPayment Date: " + date.toString()
+                + "\nPayment Amount: " + paymentTotal;
 
     }
 }

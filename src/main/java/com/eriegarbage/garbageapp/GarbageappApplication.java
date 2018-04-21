@@ -5,6 +5,7 @@ import com.eriegarbage.garbageapp.dao.BillDao;
 import com.eriegarbage.garbageapp.dao.ComplaintDao;
 import com.eriegarbage.garbageapp.dao.PaymentDao;
 import com.eriegarbage.garbageapp.managers.AccountManager;
+import com.eriegarbage.garbageapp.managers.BillingManager;
 import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +26,7 @@ public class GarbageappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AccountDao accountDao, ComplaintDao complaintDao, AccountManager accountManager) {
+	public CommandLineRunner demo(AccountDao accountDao, ComplaintDao complaintDao, AccountManager accountManager, BillingManager billingManager) {
 		return (args) -> {
 			accountManager.registerNewAccount(DEFAULT_ACCOUNT_DTO);
 			accountManager.registerNewAdmin(ADMIN_ACCOUNT_DTO);
@@ -39,6 +40,9 @@ public class GarbageappApplication {
 
 			complaintDao.save(COMPLAINT_1);
 			complaintDao.save(COMPLAINT_2);
+
+			int billId = (billingManager.getBills(DEFAULT_USERNAME).get(0).getBillID());
+			billingManager.payBill(billId, PAYMENT_DTO_1);
 		};
 	}
 

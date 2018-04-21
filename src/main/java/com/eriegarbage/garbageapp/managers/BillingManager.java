@@ -1,6 +1,7 @@
 package com.eriegarbage.garbageapp.managers;
 
 import com.eriegarbage.garbageapp.dao.BillDao;
+import com.eriegarbage.garbageapp.dao.PaymentDao;
 import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.exceptions.InvalidPaymentException;
 import com.eriegarbage.garbageapp.models.Account;
@@ -20,10 +21,16 @@ public class BillingManager {
     @Autowired
     private BillDao billDao;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private PaymentDao paymentDao;
+
     public BillingManager(BillDao billDao){ this.billDao = billDao; }
 
     public List<Bill> getBills(String username){
-        return billDao.findBillsByUsername(username);
+        return billDao.findUnpaidBillsByUsername(username);
     }
 
     public void payBill(int billID, PaymentDto paymentDto) throws InvalidPaymentException {
@@ -31,6 +38,7 @@ public class BillingManager {
         Payment payment = new Payment();
         payment.setDate(Calendar.getInstance().getTime());
         payment.setPaymentTotal(paymentDto.getPaymentAmount());
+        payment.setBill(bill);
 
         //verify payment is not more than the billTotal
         if(payment.getPaymentTotal() != bill.getTotal()) {
@@ -42,5 +50,20 @@ public class BillingManager {
 
         bill.pay(payment);
         billDao.save(bill);
+    }
+
+    public List<Payment> getPaymentsForUsername(String username) {
+        return paymentDao.findPaymentsForUsername(username);
+    }
+
+    public List<Payment> getPayments() {
+        return paymentDao.findAll();
+    }
+
+    public void sendReceipt(Long id) {
+        Payment payment = paymentDao.findById(id).orElse(null);
+        if(payment != null) {
+            emailService.sendReceipt(payment.getBill().getAccount().getEmail(), payment);
+        }
     }
 }

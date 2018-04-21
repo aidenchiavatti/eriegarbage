@@ -20,4 +20,7 @@ public interface BillDao extends JpaRepository<Bill, Long> {
 
     @Query("select b from Bill b join b.account a where a.userName =?1")
     List<Bill> findBillsByUsername(String username);
+
+    @Query("select b from Bill b join b.account a where a.userName =?1 and b.total > 0")
+    List<Bill>findUnpaidBillsByUsername(String username);
 }

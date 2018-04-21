@@ -5,6 +5,7 @@ import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.exceptions.InvalidPaymentException;
 import com.eriegarbage.garbageapp.models.Account;
 import com.eriegarbage.garbageapp.models.Bill;
+import com.eriegarbage.garbageapp.models.Payment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,4 +50,12 @@ public class BillingManagerTest {
         bills = billingManager.getBills(DEFAULT_USERNAME);
         assertEquals(0, bills.get(0).getTotal(), 0.01);
     }
+
+    @Test
+    public void getPayments() {
+        for (Payment payment : billingManager.getPaymentsForUsername("user")) {
+            System.out.println(payment.generateReceipt());
+        }
+    }
+
 }

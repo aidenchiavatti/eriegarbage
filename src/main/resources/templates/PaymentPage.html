@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/payment.js"></script>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+</head>
+<body>
+    <div th:each="payment: ${payments}">
+        <p th:text="${payment.generateReceipt()}">Payment</p>
+        <button th:id="${payment.getPaymentID()}" class="sendReceiptButtons">Send Receipt</button>
+    </div>
+</body>
+</html>

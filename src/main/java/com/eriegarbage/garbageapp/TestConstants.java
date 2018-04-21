@@ -1,9 +1,11 @@
 package com.eriegarbage.garbageapp;
 
 import com.eriegarbage.garbageapp.dto.AccountDto;
+import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.models.Account;
 import com.eriegarbage.garbageapp.models.Bill;
 import com.eriegarbage.garbageapp.models.Complaint;
+import com.eriegarbage.garbageapp.models.Payment;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -17,6 +19,7 @@ public class TestConstants {
     public static final String DEFAULT_FIRST_NAME = "John";
     public static final String DEFAULT_LAST_NAME = "Doe";
     public static final String DEFAULT_ADDRESS = "123 Fake Street";
+    private static final String DEFAULT_EMAIL = "testemail@gmail.com";
 
     public static final AccountDto DEFAULT_ACCOUNT_DTO = defaultAccountDto();
 
@@ -36,6 +39,8 @@ public class TestConstants {
     public static final Bill BILL_1 = bill1();
     public static final Bill BILL_2 = bill2();
 
+    public static final PaymentDto PAYMENT_DTO_1 = paymentDto1();
+
     private static Account defaultAccount() {
         Account account = new Account();
         account.setUserName(DEFAULT_USERNAME);
@@ -45,6 +50,7 @@ public class TestConstants {
         account.setFirstName(DEFAULT_FIRST_NAME);
         account.setLastName(DEFAULT_LAST_NAME);
         account.setAddress(DEFAULT_ADDRESS);
+        account.setEmail(DEFAULT_EMAIL);
         return account;
     }
 
@@ -56,6 +62,7 @@ public class TestConstants {
         accountDto.setFirstName(DEFAULT_FIRST_NAME);
         accountDto.setLastName(DEFAULT_LAST_NAME);
         accountDto.setAddress(DEFAULT_ADDRESS);
+        accountDto.setEmail(DEFAULT_EMAIL);
         return accountDto;
     }
 
@@ -95,6 +102,14 @@ public class TestConstants {
         calendar.set(2018, Calendar.DECEMBER, 30);
         bill.setDueDate(calendar.getTime());
         return bill;
+    }
+
+    private static PaymentDto paymentDto1() {
+        PaymentDto paymentDto = new PaymentDto();
+        paymentDto.setPaymentAmount(20);
+        paymentDto.setCardType("Discover");
+        paymentDto.setCardNumber("123456");
+        return paymentDto;
     }
 
 

@@ -22,6 +22,7 @@ public class Account {
     private String userName;
     private String address;
     private String password;
+    private String email;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "account")
     private List<Bill> bills;

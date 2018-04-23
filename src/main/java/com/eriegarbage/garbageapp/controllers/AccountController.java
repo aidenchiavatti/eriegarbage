@@ -90,4 +90,12 @@ public class AccountController {
         accountManager.registerNewAccount(accountDto);
         return "redirect:/";
     }
+
+    //an admin page
+    @RequestMapping(value = "/overdueAccounts")
+    public ModelAndView getOverdueAccounts() {
+        ModelAndView mv = new ModelAndView("ManageOverdueBillsPage");
+        mv.addObject("overdueAccounts", accountManager.getOverdueAccounts());
+        return mv;
+    }
 }

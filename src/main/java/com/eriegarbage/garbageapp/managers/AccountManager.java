@@ -3,10 +3,15 @@ package com.eriegarbage.garbageapp.managers;
 import com.eriegarbage.garbageapp.dao.AccountDao;
 import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.dto.AccountEditDto;
+import com.eriegarbage.garbageapp.dto.OverdueAccountDto;
 import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class AccountManager {
@@ -58,5 +63,22 @@ public class AccountManager {
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         account.setPickupTime("Pickup time not set yet");
         accountDao.save(account);
+    }
+
+    public List<OverdueAccountDto> getOverdueAccounts() {
+        List<Account> accounts = accountDao.findAll();
+        List<OverdueAccountDto> overdueAccounts = new ArrayList<>();
+        for(Account account : accounts) {
+            if(account.daysOverdue() >= 60) {
+                OverdueAccountDto overdueAccount = new OverdueAccountDto();
+                overdueAccount.setAccountId(account.getAccountID());
+                overdueAccount.setDaysOverdue(account.daysOverdue());
+                overdueAccount.setUsername(account.getUserName());
+                overdueAccounts.add(overdueAccount);
+            }
+        }
+        Collections.sort(overdueAccounts);
+        Collections.reverse(overdueAccounts);
+        return overdueAccounts;
     }
 }

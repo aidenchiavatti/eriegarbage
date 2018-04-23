@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter
@@ -30,5 +32,13 @@ public class Bill {
     public void pay(Payment payment) {
         this.total = 0;
         this.payment = payment;
+    }
+
+    public int daysOverdue() {
+        if(payment != null) {
+            return 0;
+        }
+        long timeDiff = Calendar.getInstance().getTime().getTime() - dueDate.getTime();
+        return Math.toIntExact(TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS));
     }
 }

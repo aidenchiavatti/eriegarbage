@@ -47,14 +47,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td style="vertical-align:middle;">20 days</td>
-                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight"><button class="btn btn-primary suspendButtons" type="button">Suspend</button></td>
-                                    </tr>
-                                    <tr></tr>
-                                    <tr>
-                                        <td style="vertical-align:middle;">19 days</td>
-                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight"><button class="btn btn-primary payButton" type="button">Suspend</button></td>
+                                    <tr th:each="overdueAccount: ${overdueAccounts}">
+                                        <td th:text="${overdueAccount.getDaysOverdue()} + ' days'" style="vertical-align:middle;">20 days</td>
+                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight">
+                                            <button class="btn btn-primary suspendButtons" type="button">Suspend</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

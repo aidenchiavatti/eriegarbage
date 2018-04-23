@@ -35,4 +35,11 @@ public class Account {
     public void addBill(Bill bill) {
         this.bills.add(bill);
     }
+
+    public int daysOverdue() {
+        if(bills == null || bills.size() == 0) {
+            return 0;
+        }
+        return bills.stream().mapToInt(Bill::daysOverdue).max().orElse(0);
+    }
 }

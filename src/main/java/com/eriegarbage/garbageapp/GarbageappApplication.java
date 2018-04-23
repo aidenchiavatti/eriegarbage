@@ -41,8 +41,8 @@ public class GarbageappApplication {
 			complaintDao.save(COMPLAINT_1);
 			complaintDao.save(COMPLAINT_2);
 
-			int billId = (billingManager.getBills(DEFAULT_USERNAME).get(0).getBillID());
-			billingManager.payBill(billId, PAYMENT_DTO_1);
+			//int billId = (billingManager.getBills(DEFAULT_USERNAME).get(0).getBillID());
+			//billingManager.payBill(billId, PAYMENT_DTO_1);
 		};
 	}
 

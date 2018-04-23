@@ -11,7 +11,11 @@
 <p>Complaints</p>
 <div th:each="complaint: ${complaints}">
     <p th:text="${complaint.getComplaint()}">Complaints</p>
-    <button th:id="${complaint.getComplaintID()}" class="viewedButtons">Mark Viewed</button>
+    <button th:id="'viewed' + ${complaint.getComplaintID()}" class="viewedButtons">Mark Viewed</button><button th:id="'respond'+${complaint.getComplaintID()}" class="complaintResponseBtns">Respond</button>
+    <p></p>
+    <div th:id="'complaintResponseDiv' + ${complaint.getComplaintID()}" style="display:none">
+        <input th:id="'complaintResponseInput' + ${complaint.getComplaintID()}" type="text"></input>
+    </div>
 </div>
 </body>
 </html>

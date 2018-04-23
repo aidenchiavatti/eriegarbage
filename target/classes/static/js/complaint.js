@@ -23,7 +23,8 @@ $(document).ready(function(){
 
     $(".viewedButtons").click(function(event) {
         var obj = {};
-        obj.id = event.target.id;
+        var temp = event.target.id.substr(6);
+        obj.id = temp;
         var token = $("input[name='_csrf']").val();
         $.ajax({
             url:'/markComplaintAsViewed?id=' + obj.id,
@@ -36,4 +37,13 @@ $(document).ready(function(){
             }
         });
     });
+<<<<<<< HEAD
 });
+=======
+    $(".complaintResponseBtns").click(function(event){
+        var temp = event.target.id.substr(7);
+        var selector = "#complaintResponseDiv" + temp;
+        $(selector).css("display", "inline-block");
+    });
+})
+>>>>>>> responding to complaints

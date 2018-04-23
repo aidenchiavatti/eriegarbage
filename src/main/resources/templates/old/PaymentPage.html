@@ -8,9 +8,21 @@
     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 </head>
 <body>
+<<<<<<< HEAD:src/main/resources/templates/old/PaymentPage.html
     <div th:each="payment: ${payments}">
         <p th:text="${payment.generateReceipt()}">Payment</p>
         <button th:id="${payment.getPaymentID()}" class="sendReceiptButtons">Send Receipt</button>
     </div>
+=======
+<p>Complaints</p>
+<div th:each="complaint: ${complaints}">
+    <p th:text="${complaint.getComplaint()}">Complaints</p>
+    <button th:id="'viewed' + ${complaint.getComplaintID()}" class="viewedButtons">Mark Viewed</button><button th:id="'respond'+${complaint.getComplaintID()}" class="complaintResponseBtns">Respond</button>
+    <p></p>
+    <div th:id="'complaintResponseDiv' + ${complaint.getComplaintID()}" style="display:none">
+        <input th:id="'complaintResponseInput' + ${complaint.getComplaintID()}" type="text"></input>
+    </div>
+</div>
+>>>>>>> responding to complaints:target/classes/templates/ViewComplaints.html
 </body>
 </html>

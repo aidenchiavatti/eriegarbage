@@ -45,6 +45,10 @@ public class AccountManager {
         return accountDao.getAccountsThatRequestSuspension();
     }
 
+    public void updateAnAccountAsSuspeneded(String username) {
+        accountDao.updateAccountSuspended(username);
+    }
+
     public void registerNewAccount(AccountDto dto) {
         Account account = new Account();
         account.setUserName(dto.getUsername());

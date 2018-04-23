@@ -52,7 +52,7 @@
                                 <tr th:each="usernames: ${usernames}">
                                     <td th:text="${usernames}" style="vertical-align:middle;">showing</td>
                                     <td class="d-flex flex-row justify-content-end align-items-center tableRight">
-                                        <button th:id="${usernames}" class="btn btn-primary payButton payBillButton" type="button">Suspend</button>
+                                        <button th:id="${usernames}" class="btn btn-primary suspendButton suspendAccountButtons" type="button">Suspend</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -65,6 +65,7 @@
     </div>
     <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/SuspendAccount.js" th:src="@{/js/SuspendAccount.js}"></script>
 </body>
 
 </html>

@@ -20,5 +20,9 @@ $(document).ready(function(){
                 alert(error);
             }
         });
+    });
+
+    $('#disputeModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
     })
 });

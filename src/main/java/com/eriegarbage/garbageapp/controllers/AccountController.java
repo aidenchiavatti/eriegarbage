@@ -65,6 +65,12 @@ public class AccountController {
         accountManager.accountEditInfo(accountInfo, accountManager.getAccount(auth.getName()));
     }
 
+    @RequestMapping(value = "/SuspendAccount", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void SuspendAccount(@RequestBody String username) {
+        accountManager.updateAnAccountAsSuspeneded(username);
+    }
+
     @RequestMapping(value = "/cancelAccount", method = RequestMethod.GET)
     public String cancelAccount() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

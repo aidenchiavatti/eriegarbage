@@ -19,7 +19,7 @@ public class TestConstants {
     public static final String DEFAULT_FIRST_NAME = "John";
     public static final String DEFAULT_LAST_NAME = "Doe";
     public static final String DEFAULT_ADDRESS = "123 Fake Street";
-    private static final String DEFAULT_EMAIL = "testemail@gmail.com";
+    private static final String DEFAULT_EMAIL = "aidenchiavatti@gmail.com";
 
     public static final AccountDto DEFAULT_ACCOUNT_DTO = defaultAccountDto();
 

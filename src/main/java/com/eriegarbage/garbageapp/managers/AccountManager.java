@@ -42,6 +42,7 @@ public class AccountManager {
         account.setAdmin(false);
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         account.setPickupTime("Pickup time not set yet");
+        account.setEmail(dto.getEmail());
         accountDao.save(account);
     }
 

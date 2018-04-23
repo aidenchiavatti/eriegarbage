@@ -10,6 +10,7 @@ import com.eriegarbage.garbageapp.models.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class BillingManager {
         return paymentDao.findAll();
     }
 
-    public void sendReceipt(Long id) {
+    public void sendReceipt(Long id) throws MessagingException {
         Payment payment = paymentDao.findById(id).orElse(null);
         if(payment != null) {
             emailService.sendReceipt(payment.getBill().getAccount().getEmail(), payment);

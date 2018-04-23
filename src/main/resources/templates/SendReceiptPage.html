@@ -47,14 +47,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td style="vertical-align:middle;">payment stuff</td>
-                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight"><button class="btn btn-primary sendReceiptButtons" type="button">Send</button></td>
-                                    </tr>
-                                    <tr></tr>
-                                    <tr>
-                                        <td style="vertical-align:middle;">it was paid</td>
-                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight"><button class="btn btn-primary sendReceiptButtons" type="button">Send</button></td>
+                                    <tr th:each="payment: ${payments}">
+                                        <td style="vertical-align:middle;" th:text="${payment.generateReceipt()}">payment stuff</td>
+                                        <td class="d-flex flex-row justify-content-end align-items-center tableRight">
+                                            <button th:id="${payment.getPaymentID()}" class="btn btn-primary sendReceiptButtons" type="button">Send</button>
+                                            <div th:id="'loader'+ ${payment.getPaymentID()}" class="loader" style="display: none"></div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -46,7 +46,12 @@ public class BillController {
     @RequestMapping(value = "/sendReceipt", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void sendReceipt(@RequestParam Long id) {
-        billingManager.sendReceipt(id);
+        try {
+            billingManager.sendReceipt(id);
+        } catch (Exception e) {
+            System.out.println("Issues sending email");
+            e.printStackTrace();
+        }
     }
 
 }

@@ -22,7 +22,7 @@ $(document).ready(function(){
             url:'/cancelAccount',
             type:'get',
             success:function(){
-
+                window.location.href = "/AccountPage"
             }
         });
     })
@@ -31,7 +31,7 @@ $(document).ready(function(){
             url:'/suspendAccountRequest',
             type:'get',
             success:function(){
-
+                window.location.href = "/AccountPage"
             }
         });
     })

@@ -24,4 +24,8 @@ public class ComplaintManager {
 
     public void markComplaintAsViewed(int complaintID) { complaintDao.updateMarkedComplaint(complaintID); }
 
+    public void respondToComplaint(int id, String response) {
+        complaintDao.respondToComplaint(id, response);
+    }
+
 }

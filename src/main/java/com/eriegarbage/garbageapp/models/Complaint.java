@@ -24,6 +24,7 @@ public class Complaint {
 
     private boolean viewed;
     private String complaint;
+    String response;
 
     public Complaint(String complaintString) {
         this.viewed = false;

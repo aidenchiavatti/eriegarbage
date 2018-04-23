@@ -19,4 +19,9 @@ public interface ComplaintDao extends JpaRepository<Complaint, Long> {
     @Transactional
     @Query("update Complaint c set c.viewed = true where c.complaintID = ?1")
     public void updateMarkedComplaint(int complaintID);
+
+    @Modifying
+    @Transactional
+    @Query("update Complaint c set c.response = ?2 where c.complaintID = ?1")
+    public void respondToComplaint(int complaintID, String response);
 }

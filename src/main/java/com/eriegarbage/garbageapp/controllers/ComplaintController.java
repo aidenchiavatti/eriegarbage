@@ -50,4 +50,10 @@ public class ComplaintController {
         complaintManager.markComplaintAsViewed(id);
     }
 
+    @RequestMapping(value = "respondToComplaint", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void respondToComplaint(@RequestParam("id") int id, @RequestBody String response) {
+        complaintManager.respondToComplaint(id, response);
+    }
+
 }

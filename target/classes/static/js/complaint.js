@@ -37,13 +37,36 @@ $(document).ready(function(){
             }
         });
     });
-<<<<<<< HEAD
-});
-=======
-    $(".complaintResponseBtns").click(function(event){
+
+    $(".respondButtons").click(function(event){
         var temp = event.target.id.substr(7);
         var selector = "#complaintResponseDiv" + temp;
         $(selector).css("display", "inline-block");
     });
-})
->>>>>>> responding to complaints
+
+    $(".complaintRespCancelButtons").click(function(event){
+        var temp = event.target.id.substr(14);
+        var selector = "#complaintResponseDiv" + temp;
+        $(selector).css("display", "none");
+    });
+
+    $(".complaintRespSubmitButtons").click(function(event){
+        var temp = event.target.id.substr(14);
+        var inputSelector = "#complaintResponseInput" + temp;
+        var response = $(inputSelector).val();
+        var token = $("input[name='_csrf']").val();
+        $.ajax({
+            url:'/respondToComplaint?id=' + temp,
+            type:'post',
+            data: response,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            },
+            success:function(){
+                alert("Response Submitted");
+            }
+        });
+        var divSelector = "#complaintResponseDiv" + temp;
+        $(divSelector).css("display", "none");
+    });
+});

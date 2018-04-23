@@ -3,6 +3,7 @@ package com.eriegarbage.garbageapp.controllers;
 import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
+import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class AccountController {
@@ -69,6 +71,26 @@ public class AccountController {
         accountManager.cancelAccount(accountManager.getAccount(auth.getName()));
         auth.setAuthenticated(false);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/getSuspendableAccounts", method = RequestMethod.GET)
+    public ModelAndView getSuspendableAccounts() {
+        ModelAndView mv = new ModelAndView("ManageSuspendAccountPage");
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<Account> as = accountManager.getSuspendableAccounts();
+        for (Account a : as) {
+            usernames.add(a.getUserName());
+        }
+        mv.addObject("usernames", usernames);
+        return mv;
+    }
+
+    @RequestMapping(value = "/suspendAccountRequest", method = RequestMethod.GET)
+    @ResponseBody
+    public String suspendAccountRequest() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        accountManager.requestSuspend(accountManager.getAccount(auth.getName()));
+        return "Pass";
     }
 
     @RequestMapping(value = "/login")

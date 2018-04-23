@@ -25,17 +25,25 @@ public class AccountManager {
         this.accountDao = accountDao;
     }
 
-    public void createAccount(Account account) {
-        accountDao.save(account);
-    }
-
     public Account getAccount(String username) {
         return accountDao.getAccountByUserName(username);
     }
 
-    public void accountEditInfo(AccountEditDto dto, Account a) { accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountID()); }
+    public void accountEditInfo(AccountEditDto dto, Account a) {
+        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountID());
+    }
 
-    public void cancelAccount(Account a) { accountDao.deleteAccount(a.getAccountID()); }
+    public void cancelAccount(Account a) {
+        accountDao.deleteAccount(a.getAccountID());
+    }
+
+    public void requestSuspend(Account a) {
+        accountDao.updateAccountSuspendRequest(a.getAccountID());
+    }
+
+    public ArrayList<Account> getSuspendableAccounts() {
+        return accountDao.getAccountsThatRequestSuspension();
+    }
 
     public void registerNewAccount(AccountDto dto) {
         Account account = new Account();

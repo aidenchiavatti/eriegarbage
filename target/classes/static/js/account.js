@@ -31,7 +31,7 @@ $(document).ready(function(){
             url:'/suspendAccountRequest',
             type:'get',
             success:function(){
-                window.location.href = "/AccountPage"
+                $("#suspendDiv").html("");
             }
         });
     })

@@ -17,7 +17,7 @@
     <div>
         <div class="header-blue" style="height:100vh;">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">Account Page</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="container-fluid"><a class="navbar-brand" href="#">Edit Account Page</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse d-flex justify-content-between" id="navcol-1">
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="/" style="color:#ffffff;">Home</a></li>
@@ -34,29 +34,35 @@
             </nav>
             <div class="container hero">
                 <div class="row">
-                    <div class="col-6 offset-3 d-flex flex-column" id="accountInfoCol" style="font-size:24px;">
-                        <span th:text="'Username: '+${userName}">Username: user</span>
-                        <span th:text="'First Name: '+${accountInfo.firstName}">First Name: test</span>
-                        <span th:text="'Last Name: '+${accountInfo.lastName}">Last Name: test</span>
-                        <span th:text="'Address: '+${accountInfo.address}">Address: test</span>
-                        <span th:if="${accountInfo.isSuspended()} == false">Status: ACTIVE</span>
-                        <span th:if="${accountInfo.isSuspended()}">Status: SUSPENDED</span>
+                    <div class="col d-flex justify-content-center">
+                        <span style="margin-bottom:20px;color:rgb(255,255,255);font-size:20px;" th:text="'Username: '+${userName}">Username: user</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col" id="accountActionsCol">
-                        <button class="btn btn-light btn-lg action-button" type="button" id="editAccountButton">Edit Account</button>
-                        <button class="btn btn-light btn-lg action-button" type="button" id="suspendAccountButton">Suspend Account</button>
-                        <button class="btn btn-light btn-lg action-button" type="button" id="cancelAccountButton" >Cancel Account</button>
+                    <div class="col-12">
+                        <form class="d-flex flex-column justify-content-center">
+                            <div class="d-flex flex-row align-items-center align-self-center editAccountFormDiv">
+                                <label style="white-space:nowrap;margin-right:20px;color:rgb(255,255,255);">First Name:</label>
+                                <input class="form-control" th:value="${accountInfo.firstName}" id="firstName" type="text" name="firstName">
+                            </div>
+                            <div class="d-flex flex-row align-items-center align-self-center editAccountFormDiv">
+                                <label style="white-space:nowrap;margin-right:20px;color:rgb(255,255,255);">&nbsp;Last Name:</label>
+                                <input class="form-control" th:value="${accountInfo.lastName}" id="lastName" type="text" name="lastName">
+                            </div>
+                            <div class="d-flex flex-row align-items-center align-self-center editAccountFormDiv">
+                                <label style="white-space:nowrap;margin-right:20px;color:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp;Address:</label>
+                                <input class="form-control" th:value="${accountInfo.address}" id="address" type="text" name="address">
+                            </div>
+                            <button class="btn btn-primary align-self-center"
+                                type="button" id="submitButton" style="width:100px;">Submit</button></form>
                     </div>
                 </div>
-                <div id="cancelDiv"></div>
             </div>
         </div>
     </div>
     <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="../static/js/account.js" th:src="@{/js/account.js}"></script>
+    <script src="../static/js/accountEdit.js" th:src="@{/js/accountEdit.js}"></script>
 </body>
 
 </html>

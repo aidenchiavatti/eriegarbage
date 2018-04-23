@@ -25,7 +25,7 @@ public class ComplaintController {
 
     @RequestMapping(value = "/viewComplaintPage")
     public ModelAndView getViewComplaintsPage() {
-        ModelAndView mv = new ModelAndView("ViewComplaints");
+        ModelAndView mv = new ModelAndView("ViewComplaintsPage");
         mv.addObject("complaints", complaintManager.readComplaints());
         return mv;
     }

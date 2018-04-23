@@ -1,7 +1,6 @@
 package com.eriegarbage.garbageapp.controllers;
 
 import com.eriegarbage.garbageapp.dto.PaymentDto;
-import com.eriegarbage.garbageapp.exceptions.InvalidPaymentException;
 import com.eriegarbage.garbageapp.managers.BillingManager;
 import com.eriegarbage.garbageapp.models.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class BillController {
 
     @RequestMapping(value = "/viewPayments")
     public ModelAndView getPaymentsPage() {
-        ModelAndView mv = new ModelAndView("PaymentPage");
+        ModelAndView mv = new ModelAndView("SendReceiptPage");
         mv.addObject("payments", billingManager.getPayments());
         return mv;
     }

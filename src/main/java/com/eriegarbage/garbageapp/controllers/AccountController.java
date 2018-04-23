@@ -3,7 +3,6 @@ package com.eriegarbage.garbageapp.controllers;
 import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
-import com.eriegarbage.garbageapp.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -50,7 +49,7 @@ public class AccountController {
 
     @RequestMapping(value = "/viewAccountPageEdit")
     public ModelAndView getAccountPageEdit() {
-        ModelAndView mv = new ModelAndView("AccountPageEdit");
+        ModelAndView mv = new ModelAndView("AccountEditPage");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         mv.addObject("userName", auth.getName());
         mv.addObject("accountInfo", accountManager.getAccount(auth.getName()));

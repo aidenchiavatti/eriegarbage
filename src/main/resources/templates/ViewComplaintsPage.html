@@ -17,9 +17,9 @@
     <div>
         <div class="header-blue" style="height:100vh;">
             <nav class="navbar navbar-light navbar-expand-md">
-                <div class="container-fluid"><a class="navbar-brand" href="#">Admin Home</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse d-flex justify-content-between"
-                        id="navcol-1">
+                <div class="container-fluid"><a class="navbar-brand" href="#">View Complaints Page</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div
+                        class="collapse navbar-collapse d-flex justify-content-between" id="navcol-1">
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation"><a class="nav-link" href="/admin" style="color:#ffffff;">Home</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Overdue Bills</a></li>
@@ -33,17 +33,37 @@
                             <button class="btn btn-light btn-lg action-button" type="submit" id="logout">Logout</button>
                         </form>
                     </div>
+        </div>
+        </nav>
+        <div class="container hero">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Complaint</th>
+                                    <th class="tableRight">Mark as Viewed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="complaint: ${complaints}">
+                                    <td th:text="${complaint.getComplaint()}">Complaints</td>
+                                    <td class="d-flex flex-row justify-content-end align-items-center tableRight">
+                                        <button class="btn btn-primary viewedButtons" type="button"th:id="${complaint.getComplaintID()}">Viewed</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </nav>
-            <div class="container hero">
-                <div class="row"></div>
             </div>
         </div>
     </div>
+    </div>
     <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="../static/js/adminmain.js" th:src="@{/js/accountmain.js}"></script>
-
+    <script src="../static/js/complaint.js" th:src="@{/js/complaint.js}"></script>
 </body>
 
 </html>

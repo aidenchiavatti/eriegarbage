@@ -3,10 +3,19 @@ $(document).ready(function(){
         window.location.href = "/viewAccountPageEdit"
     })
     $("#cancelAccountButton").click(function () {
-        $("#cancelDiv").html("<p>Cancelling is final! You would have to re-register to get an account back</p><br><button id='continueToCancelButton'>Continue</button><button id='secondCancelButton'>Cancel</button>");
+        $("#suspendDiv").html("");
+        $("#cancelDiv").html("<p>Cancelling is final! You would have to re-register to get an account back</p><br><button "+
+            "class=\"btn btn-light btn-lg action-button\" type=\"button\" id='continueToCancelButton'>Continue</button><button "+
+            "class=\"btn btn-light btn-lg action-button secondCancelButton\" type=\"button\">Cancel</button>");
     })
     $(document).on("click", "#secondCancelButton", function () {
         $("#cancelDiv").html("");
+    })
+    $("#suspendAccountButton").click(function () {
+        $("#cancelDiv").html("");
+        $("#suspendDiv").html("<p>Your account will be suspended the following month.</p><br><button "+
+            "class=\"btn btn-light btn-lg action-button\" type=\"button\" id='continueToSuspendButton'>Continue</button><button "+
+            "class=\"btn btn-light btn-lg action-button secondCancelButton\" type=\"button\">Cancel</button>");
     })
     $(document).on("click", "#continueToCancelButton", function () {
         $.ajax({
@@ -16,5 +25,18 @@ $(document).ready(function(){
 
             }
         });
+    })
+    $(document).on("click", "#continueToSuspendButton", function () {
+        $.ajax({
+            url:'/suspendAccountRequest',
+            type:'get',
+            success:function(){
+
+            }
+        });
+    })
+    $(document).on("click", ".secondCancelButton", function () {
+        $("#cancelDiv").html("");
+        $("#suspendDiv").html("");
     })
 });

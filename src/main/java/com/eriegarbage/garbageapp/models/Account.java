@@ -30,6 +30,7 @@ public class Account {
     private String pickupTime;
     private boolean isAdmin;
     private boolean isSuspended;
+    private boolean requestSuspend;
 
     public void addBill(Bill bill) {
         this.bills.add(bill);

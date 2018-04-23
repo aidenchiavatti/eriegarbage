@@ -1,5 +1,6 @@
 package com.eriegarbage.garbageapp.controllers;
 
+import com.eriegarbage.garbageapp.dto.ComplaintResponseDto;
 import com.eriegarbage.garbageapp.managers.ComplaintManager;
 import com.eriegarbage.garbageapp.models.Complaint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,6 @@ public class ComplaintController {
         return complaintManager.readComplaints();
     }
 
-
     @RequestMapping(value = "markComplaintAsViewed", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void markComplaintAsViewed(@RequestParam("id") int id) {
@@ -52,8 +52,8 @@ public class ComplaintController {
 
     @RequestMapping(value = "respondToComplaint", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void respondToComplaint(@RequestParam("id") int id, @RequestBody String response) {
-        complaintManager.respondToComplaint(id, response);
+    public void respondToComplaint(@RequestBody ComplaintResponseDto response) {
+        complaintManager.respondToComplaint(response.getId(), response.getResponse());
     }
 
 }

@@ -55,10 +55,15 @@ $(document).ready(function(){
         var inputSelector = "#complaintResponseInput" + temp;
         var response = $(inputSelector).val();
         var token = $("input[name='_csrf']").val();
+
+        var data = {};
+        data.id = parseInt(temp);
+        data.response = response;
         $.ajax({
-            url:'/respondToComplaint?id=' + temp,
+            url:'/respondToComplaint',
             type:'post',
-            data: response,
+            contentType: "application/json",
+            data: JSON.stringify(data),
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('X-CSRF-TOKEN', token);
             },

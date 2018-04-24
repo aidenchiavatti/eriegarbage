@@ -40,6 +40,21 @@ public class AccountController {
         return mv;
     }
 
+    @RequestMapping(value = "/newAdmin", method = RequestMethod.GET)
+    public ModelAndView getNewAdminPage() {
+        AccountDto accountDto = new AccountDto();
+        ModelAndView mv = new ModelAndView("NewAdminPage");
+        mv.addObject("account", accountDto);
+        return mv;
+    }
+
+    @RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
+    public String registerUserAdminAccount(@ModelAttribute("account") @Valid AccountDto accountDto) {
+        accountManager.registerNewAdmin(accountDto);
+        System.out.println("i am here");
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/viewAccountPage")
     public ModelAndView getAccountPage() {
         ModelAndView mv = new ModelAndView("AccountPage");

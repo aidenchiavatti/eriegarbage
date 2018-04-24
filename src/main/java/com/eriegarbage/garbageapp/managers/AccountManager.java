@@ -46,10 +46,11 @@ public class AccountManager {
     }
 
     public void updateAnAccountAsSuspended(String username) {
-        accountDao.updateAccountSuspended(username);
+        accountDao.updateAccountSuspendedApproved(username);
     }
 
-    public void registerNewAccount(AccountDto dto) {
+    private Account stepsForRegisterAccount(AccountDto dto)
+    {
         Account account = new Account();
         account.setUserName(dto.getUsername());
         account.setFirstName(dto.getFirstName());
@@ -57,23 +58,23 @@ public class AccountManager {
         account.setAddress(dto.getAddress());
         account.setSuspended(false);
         account.setRequestSuspend(false);
+        account.setSuspensionApproved(false);
         account.setAdmin(false);
         account.setPassword(passwordEncoder.encode(dto.getPassword()));
         account.setPickupTime("Pickup time not set yet");
         account.setEmail(dto.getEmail());
+        return account;
+    }
+
+
+    public void registerNewAccount(AccountDto dto) {
+        Account account = stepsForRegisterAccount(dto);
         accountDao.save(account);
     }
 
-    //maybe get rid of this later...
     public void registerNewAdmin(AccountDto dto) {
-        Account account = new Account();
-        account.setUserName(dto.getUsername());
-        account.setFirstName(dto.getFirstName());
-        account.setLastName(dto.getLastName());
-        account.setAddress(dto.getAddress());
+        Account account = stepsForRegisterAccount(dto);
         account.setAdmin(true);
-        account.setPassword(passwordEncoder.encode(dto.getPassword()));
-        account.setPickupTime("Pickup time not set yet");
         accountDao.save(account);
     }
 

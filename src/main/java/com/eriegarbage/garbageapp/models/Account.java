@@ -31,6 +31,7 @@ public class Account {
     private boolean isAdmin;
     private boolean isSuspended;
     private boolean requestSuspend;
+    private boolean suspensionApproved;
 
     public void addBill(Bill bill) {
         this.bills.add(bill);

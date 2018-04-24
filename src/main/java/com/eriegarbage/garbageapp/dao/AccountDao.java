@@ -28,8 +28,13 @@ public interface AccountDao extends JpaRepository<Account, Long> {
 
     @Modifying
     @Transactional
-    @Query("update Account a set a.isSuspended = true where a.userName = ?1")
-    void updateAccountSuspended(String accountName);
+    @Query("update Account a set a.suspensionApproved = true where a.userName = ?1")
+    void updateAccountSuspendedApproved(String accountName);
+
+    @Modifying
+    @Transactional
+    @Query("update Account a set a.isSuspended = true where a.accountID = ?1")
+    void updateAccountSuspended(int accountID);
 
     @Modifying
     @Transactional

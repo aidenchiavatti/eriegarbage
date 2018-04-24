@@ -18,7 +18,7 @@ public class ComplaintController {
     ComplaintManager complaintManager;
 
     @RequestMapping(value = "/fileComplaintPage")
-    public ModelAndView getAccountPage() {
+    public ModelAndView getComplaintPage() {
         ModelAndView mv = new ModelAndView("ComplaintPage");
        // mv.addObject("accountInfo", "info");
         return mv;

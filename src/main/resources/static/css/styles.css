@@ -19,3 +19,8 @@
     height: 10%;
     width: 10%;
 }
+
+#stockImg {
+    height: 60vh;
+    margin:0 auto;
+}

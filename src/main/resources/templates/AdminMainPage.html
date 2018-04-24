@@ -39,7 +39,18 @@
                 </div>
             </nav>
             <div class="container hero">
-                <div class="row"></div>
+                <div class="row">
+                    <img id="stockImg" src="../static/img/stock.jpg" th:src="@{/img/stock.jpg}">
+                </div>
+                <div class="row">
+                    <div style="margin: 0 auto">
+                        <span>Featured 'Garbage Podcast' of the month:</span>
+                        <audio controls autoplay style="margin-top:10px">
+                            <source src="../static/img/garbage41.mp3" th:src="@{/img/garbage41.mp3}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

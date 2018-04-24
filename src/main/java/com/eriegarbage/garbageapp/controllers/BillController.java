@@ -3,6 +3,7 @@ package com.eriegarbage.garbageapp.controllers;
 import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.managers.BillingManager;
 import com.eriegarbage.garbageapp.models.Bill;
+import com.eriegarbage.garbageapp.models.Dispute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -52,5 +55,21 @@ public class BillController {
             System.out.println("Issues sending email");
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping(value = "/viewBillDisputes")
+    public ModelAndView viewBillDisputes() {
+        ModelAndView mv = new ModelAndView("ManageBillDisputesPage");
+
+        //remove later
+        List<Dispute> disputes = new ArrayList<>();
+        Dispute dispute = new Dispute();
+        dispute.setDisputeID(1);
+        dispute.setDispute("AHHHH!");
+        disputes.add(dispute);
+        //end of remove
+
+        mv.addObject("disputes", disputes);
+        return mv;
     }
 }

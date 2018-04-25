@@ -35,14 +35,15 @@ public class GarbageappApplication {
 			account.setPickupTime(DEFAULT_ACCOUNT.getPickupTime());
 			BILL_1.setAccount(account);
 			BILL_2.setAccount(account);
-			account.setBills(Arrays.asList(BILL_1, BILL_2));
+			BILL_3.setAccount(account);
+			account.setBills(Arrays.asList(BILL_1, BILL_2, BILL_3));
 			accountDao.save(account);
 
 			complaintDao.save(COMPLAINT_1);
 			complaintDao.save(COMPLAINT_2);
 
-			//int billId = (billingManager.getBills(DEFAULT_USERNAME).get(0).getBillID());
-			//billingManager.payBill(billId, PAYMENT_DTO_1);
+			int billId = (billingManager.getBills(DEFAULT_USERNAME).get(2).getBillID());
+			billingManager.payBill(billId, PAYMENT_DTO_1);
 		};
 	}
 

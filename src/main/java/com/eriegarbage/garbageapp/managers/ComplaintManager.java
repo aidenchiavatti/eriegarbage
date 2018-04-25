@@ -18,6 +18,8 @@ public class ComplaintManager {
         return complaintDao.getUnreadComplaints();
     }
 
+    //public List<String> readComplaintResponses(){ return complaintDao.getComplaintResponses(); }
+
     public void submitComplaint(Complaint complaint) {
         complaintDao.save(complaint);
     }

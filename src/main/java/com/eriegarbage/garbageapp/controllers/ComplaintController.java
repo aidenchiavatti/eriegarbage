@@ -21,6 +21,7 @@ public class ComplaintController {
     public ModelAndView getComplaintPage() {
         ModelAndView mv = new ModelAndView("ComplaintPage");
        // mv.addObject("accountInfo", "info");
+        mv.addObject("complaints", complaintManager.readComplaints());
         return mv;
     }
 
@@ -43,6 +44,10 @@ public class ComplaintController {
     public List<Complaint> viewComplaintsTest() {
         return complaintManager.readComplaints();
     }
+
+   /* @RequestMapping(value = "/viewComplaintReponses")
+    @ResponseBody
+    public List<String> readComplaintReponses() { return complaintManager.readComplaintResponses(); }*/
 
     @RequestMapping(value = "markComplaintAsViewed", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)

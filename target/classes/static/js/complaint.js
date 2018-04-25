@@ -62,12 +62,8 @@ $(document).ready(function(){
         $.ajax({
             url:'/respondToComplaint',
             type:'post',
-<<<<<<< HEAD
             contentType: "application/json",
             data: JSON.stringify(data),
-=======
-            data: JSON.stringify(response),
->>>>>>> trying to get the response string formatted correctly
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('X-CSRF-TOKEN', token);
             },

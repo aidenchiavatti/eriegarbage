@@ -45,6 +45,28 @@
                     </div>
                 </div>
             </div>
+            <div class="container hero">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Complaint</th>
+                                    <th>Response</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="complaint: ${complaints}">
+                                    <td th:text="${complaint.getComplaint()}">Complaints</td>
+                                    <td th:text="${complaint.getResponse()}">Responses</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>

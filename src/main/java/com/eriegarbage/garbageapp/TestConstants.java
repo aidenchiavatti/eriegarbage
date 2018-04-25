@@ -38,6 +38,7 @@ public class TestConstants {
 
     public static final Bill BILL_1 = bill1();
     public static final Bill BILL_2 = bill2();
+    public static final Bill BILL_3 = bill3();
 
     public static final PaymentDto PAYMENT_DTO_1 = paymentDto1();
 
@@ -100,6 +101,15 @@ public class TestConstants {
         bill.setTotal(20);
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, Calendar.DECEMBER, 30);
+        bill.setDueDate(calendar.getTime());
+        return bill;
+    }
+
+    private static Bill bill3() {
+        Bill bill = new Bill();
+        bill.setTotal(20);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, Calendar.FEBRUARY, 30);
         bill.setDueDate(calendar.getTime());
         return bill;
     }

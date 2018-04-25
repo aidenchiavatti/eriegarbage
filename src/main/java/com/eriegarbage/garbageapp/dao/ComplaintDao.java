@@ -15,6 +15,9 @@ public interface ComplaintDao extends JpaRepository<Complaint, Long> {
     @Query("select c from Complaint c where c.viewed = false")
     ArrayList<Complaint> getUnreadComplaints();
 
+   /* @Query("select c.response from Complaint c")
+    ArrayList<String> getComplaintResponses();*/
+
     @Modifying
     @Transactional
     @Query("update Complaint c set c.viewed = true where c.complaintID = ?1")

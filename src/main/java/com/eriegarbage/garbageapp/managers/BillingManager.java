@@ -5,7 +5,6 @@ import com.eriegarbage.garbageapp.dao.DisputeDao;
 import com.eriegarbage.garbageapp.dao.PaymentDao;
 import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.exceptions.InvalidPaymentException;
-import com.eriegarbage.garbageapp.models.Account;
 import com.eriegarbage.garbageapp.models.Bill;
 import com.eriegarbage.garbageapp.models.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class BillingManager {
     }
 
     public void payBill(int billID, PaymentDto paymentDto) throws InvalidPaymentException {
-        Bill bill = billDao.findByBillID(billID);
+        Bill bill = billDao.findByBillId(billID);
         Payment payment = new Payment();
         payment.setDate(Calendar.getInstance().getTime());
         payment.setPaymentTotal(paymentDto.getPaymentAmount());

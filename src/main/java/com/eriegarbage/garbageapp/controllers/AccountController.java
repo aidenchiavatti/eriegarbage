@@ -4,6 +4,8 @@ import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.managers.AccountManager;
 import com.eriegarbage.garbageapp.models.Account;
+import java.util.ArrayList;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -12,9 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 public class AccountController {
@@ -25,7 +24,7 @@ public class AccountController {
     @RequestMapping(value = "/")
     public ModelAndView getCustomerMainPage() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
+        if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
             return new ModelAndView("redirect:/admin");
         }
 
@@ -49,7 +48,8 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
-    public String registerUserAdminAccount(@ModelAttribute("account") @Valid AccountDto accountDto) {
+    public String registerUserAdminAccount(@ModelAttribute("account")
+                                               @Valid AccountDto accountDto) {
         accountManager.registerNewAdmin(accountDto);
         System.out.println("i am here");
         return "redirect:/";

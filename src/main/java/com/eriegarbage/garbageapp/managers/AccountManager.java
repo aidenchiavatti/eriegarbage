@@ -30,15 +30,15 @@ public class AccountManager {
     }
 
     public void accountEditInfo(AccountEditDto dto, Account a) {
-        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountID());
+        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountId());
     }
 
     public void cancelAccount(Account a) {
-        accountDao.deleteAccount(a.getAccountID());
+        accountDao.deleteAccount(a.getAccountId());
     }
 
     public void requestSuspend(Account a) {
-        accountDao.updateAccountSuspendRequest(a.getAccountID());
+        accountDao.updateAccountSuspendRequest(a.getAccountId());
     }
 
     public ArrayList<Account> getSuspendableAccounts() {
@@ -84,7 +84,7 @@ public class AccountManager {
         for(Account account : accounts) {
             if(account.daysOverdue() >= 60) {
                 OverdueAccountDto overdueAccount = new OverdueAccountDto();
-                overdueAccount.setAccountId(account.getAccountID());
+                overdueAccount.setAccountId(account.getAccountId());
                 overdueAccount.setDaysOverdue(account.daysOverdue());
                 overdueAccount.setUsername(account.getUserName());
                 overdueAccounts.add(overdueAccount);

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Account {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int accountID;
+    private int accountId;
 
     private String firstName;
     private String lastName;

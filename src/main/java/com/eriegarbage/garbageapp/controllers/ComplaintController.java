@@ -60,5 +60,4 @@ public class ComplaintController {
     public void respondToComplaint(@RequestBody ComplaintResponseDto response) {
         complaintManager.respondToComplaint(response.getId(), response.getResponse());
     }
-
 }

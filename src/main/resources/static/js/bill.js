@@ -22,6 +22,15 @@ $(document).ready(function(){
         });
     });
 
+    $("#submitBillDispute").click(function(event){
+
+    });
+
+    $(".respondDisputeButtons").click(function (event) {
+        selectedId = event.target.id;
+    });
+
+
     $('#disputeModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })

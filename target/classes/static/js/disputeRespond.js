@@ -2,10 +2,10 @@ var selectedId;
 
 $(document).ready(function(){
     $("#submitDisputeResponse").click(function (event) {
-        var response = $(inputSelector).val();
+        var response = $("#disputeText").val();
         var token = $("input[name='_csrf']").val();
         var data = {};
-        data.id = parseInt(temp);
+        data.id = parseInt(selectedId);
         data.response = response;
         $.ajax({
             url:'/respondToDispute',
@@ -19,8 +19,6 @@ $(document).ready(function(){
                 alert("Response Submitted");
             }
         });
-        var divSelector = "#complaintResponseDiv" + temp;
-        $(divSelector).css("display", "none");
     });
 
     $(".respondDisputeButtons").click(function (event) {

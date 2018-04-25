@@ -1,5 +1,6 @@
 package com.eriegarbage.garbageapp.controllers;
 
+import com.eriegarbage.garbageapp.dto.DisputeResponseDto;
 import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.managers.BillingManager;
 import com.eriegarbage.garbageapp.models.Bill;
@@ -71,5 +72,11 @@ public class BillController {
 
         mv.addObject("disputes", disputes);
         return mv;
+    }
+
+    @RequestMapping(value = "/respondToDispute")
+    @ResponseStatus(HttpStatus.OK)
+    public void respondToDispute(@RequestBody DisputeResponseDto response){
+        billingManager.respondToDispute(response.getId(), response.getResponse());
     }
 }

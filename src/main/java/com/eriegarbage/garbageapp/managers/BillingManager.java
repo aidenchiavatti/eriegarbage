@@ -1,6 +1,7 @@
 package com.eriegarbage.garbageapp.managers;
 
 import com.eriegarbage.garbageapp.dao.BillDao;
+import com.eriegarbage.garbageapp.dao.DisputeDao;
 import com.eriegarbage.garbageapp.dao.PaymentDao;
 import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.exceptions.InvalidPaymentException;
@@ -27,6 +28,9 @@ public class BillingManager {
 
     @Autowired
     private PaymentDao paymentDao;
+
+    @Autowired
+    private DisputeDao disputeDao;
 
     public BillingManager(BillDao billDao){ this.billDao = billDao; }
 
@@ -66,5 +70,9 @@ public class BillingManager {
         if(payment != null) {
             emailService.sendReceipt(payment.getBill().getAccount().getEmail(), payment);
         }
+    }
+
+    public void respondToDispute(int id, String response){
+        disputeDao.respondToDispute(id, response);
     }
 }

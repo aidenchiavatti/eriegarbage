@@ -53,7 +53,7 @@
                                     <tr th:each="dispute: ${disputes}">
                                         <td th:text="${dispute.getDispute()}" style="vertical-align:middle;">My cat ate my garbage. Cannot pay bill</td>
                                         <td class="d-flex flex-row justify-content-end align-items-center tableRight">
-                                            <button th:id="${dispute.getDisputeID()}" class="btn btn-primary respondDisputeButtons" data-toggle="modal" data-target="#disputeResponseModal" type="button">Respond</button>
+                                            <button th:id="'disputeResponse' + ${dispute.getDisputeID()}" class="btn btn-primary respondDisputeButtons" data-toggle="modal" data-target="#disputeResponseModal" type="button">Respond</button>
                                         </td>
                                     </tr>
                                 </tbody>

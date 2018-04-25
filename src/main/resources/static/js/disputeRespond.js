@@ -8,7 +8,7 @@ $(document).ready(function(){
         data.id = parseInt(temp);
         data.response = response;
         $.ajax({
-            url:'/respondToComplaint',
+            url:'/respondToDispute',
             type:'post',
             contentType: "application/json",
             data: JSON.stringify(data),

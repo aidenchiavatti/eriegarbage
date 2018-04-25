@@ -1,14 +1,13 @@
 package com.eriegarbage.garbageapp.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -17,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 @Entity
 public class Bill {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private int billID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int billId;
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
     private Date dueDate;

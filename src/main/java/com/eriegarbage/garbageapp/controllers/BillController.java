@@ -5,16 +5,14 @@ import com.eriegarbage.garbageapp.dto.PaymentDto;
 import com.eriegarbage.garbageapp.managers.BillingManager;
 import com.eriegarbage.garbageapp.models.Bill;
 import com.eriegarbage.garbageapp.models.Dispute;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by karle on 4/17/2018.
@@ -60,8 +58,6 @@ public class BillController {
 
     @RequestMapping(value = "/viewBillDisputes")
     public ModelAndView viewBillDisputes() {
-        ModelAndView mv = new ModelAndView("ManageBillDisputesPage");
-
         //remove later
         List<Dispute> disputes = new ArrayList<>();
         Dispute dispute = new Dispute();
@@ -69,6 +65,7 @@ public class BillController {
         dispute.setDispute("AHHHH!");
         disputes.add(dispute);
         //end of remove
+        ModelAndView mv = new ModelAndView("ManageBillDisputesPage");
 
         mv.addObject("disputes", disputes);
         return mv;

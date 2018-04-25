@@ -5,13 +5,12 @@ import com.eriegarbage.garbageapp.dto.AccountDto;
 import com.eriegarbage.garbageapp.dto.AccountEditDto;
 import com.eriegarbage.garbageapp.dto.OverdueAccountDto;
 import com.eriegarbage.garbageapp.models.Account;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AccountManager {
@@ -30,7 +29,8 @@ public class AccountManager {
     }
 
     public void accountEditInfo(AccountEditDto dto, Account a) {
-        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(), dto.getAddress(), a.getAccountId());
+        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(),
+                dto.getAddress(), a.getAccountId());
     }
 
     public void cancelAccount(Account a) {
@@ -49,8 +49,7 @@ public class AccountManager {
         accountDao.updateAccountSuspendedApproved(username);
     }
 
-    private Account stepsForRegisterAccount(AccountDto dto)
-    {
+    private Account stepsForRegisterAccount(AccountDto dto) {
         Account account = new Account();
         account.setUserName(dto.getUsername());
         account.setFirstName(dto.getFirstName());
@@ -81,8 +80,8 @@ public class AccountManager {
     public List<OverdueAccountDto> getOverdueAccounts() {
         List<Account> accounts = accountDao.findAll();
         List<OverdueAccountDto> overdueAccounts = new ArrayList<>();
-        for(Account account : accounts) {
-            if(account.daysOverdue() >= 60) {
+        for (Account account : accounts) {
+            if (account.daysOverdue() >= 60) {
                 OverdueAccountDto overdueAccount = new OverdueAccountDto();
                 overdueAccount.setAccountId(account.getAccountId());
                 overdueAccount.setDaysOverdue(account.daysOverdue());

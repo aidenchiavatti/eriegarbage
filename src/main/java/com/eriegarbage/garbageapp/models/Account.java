@@ -1,12 +1,12 @@
 package com.eriegarbage.garbageapp.models;
 
-import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 
-import javax.persistence.*;
+
 
 @Getter
 @Setter
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int accountId;
 
     private String firstName;
@@ -38,7 +38,7 @@ public class Account {
     }
 
     public int daysOverdue() {
-        if(bills == null || bills.size() == 0) {
+        if (bills == null || bills.size() == 0) {
             return 0;
         }
         return bills.stream().mapToInt(Bill::daysOverdue).max().orElse(0);

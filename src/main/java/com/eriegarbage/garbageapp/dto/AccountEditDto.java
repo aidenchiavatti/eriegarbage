@@ -1,11 +1,10 @@
 package com.eriegarbage.garbageapp.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import java.io.Serializable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

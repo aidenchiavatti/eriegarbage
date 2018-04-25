@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OverdueAccountDto implements Comparable<OverdueAccountDto>{
+public class OverdueAccountDto implements Comparable<OverdueAccountDto> {
     private int accountId;
     private int daysOverdue;
     private String username;

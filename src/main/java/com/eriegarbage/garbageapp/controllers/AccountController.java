@@ -82,8 +82,8 @@ public class AccountController {
 
     @RequestMapping(value = "/SuspendAccount", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void SuspendAccount(@RequestBody String username) {
-        accountManager.updateAnAccountAsSuspended(username.substring(1,username.length()-1));
+    public void suspendAccount(@RequestBody String username) {
+        accountManager.updateAnAccountAsSuspended(username.substring(1,username.length() - 1));
     }
 
     @RequestMapping(value = "/cancelAccount", method = RequestMethod.GET)

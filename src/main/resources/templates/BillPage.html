@@ -50,7 +50,7 @@
                                         <td th:text="'Billing Due Date: ' +${bill.dueDate.toLocaleString()}" style="vertical-align:middle;">12/12/2018</td>
                                         <td class="d-flex flex-row justify-content-end align-items-center tableRight">
                                             <span th:text="'$' +${bill.total}">$20.00</span>
-                                            <button th:id="${bill.billID}" class="btn btn-primary payButton payBillButton" type="button">Pay</button>
+                                            <button th:id="${bill.billId}" class="btn btn-primary payButton payBillButton" type="button">Pay</button>
                                         </td>
                                     </tr>
                                 </tbody>

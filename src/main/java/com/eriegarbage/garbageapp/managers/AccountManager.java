@@ -25,28 +25,32 @@ public class AccountManager {
     }
 
     public Account getAccount(String username) {
-        return accountDao.getAccountByUserName(username);
+        return accountDao.findByUserName(username);
     }
 
     public void accountEditInfo(AccountEditDto dto, Account a) {
-        accountDao.updateAccountInfo(dto.getFirstName(), dto.getLastName(),
-                dto.getAddress(), a.getAccountId());
+        a.setFirstName(dto.getFirstName());
+        a.setLastName(dto.getLastName());
+        a.setAddress(dto.getAddress());
+        accountDao.save(a);
     }
 
-    public void cancelAccount(Account a) {
-        accountDao.deleteAccount(a.getAccountId());
+    public void cancelAccount(Account account) {
+        accountDao.delete(account);
     }
 
-    public void requestSuspend(Account a) {
-        accountDao.updateAccountSuspendRequest(a.getAccountId());
+    public void requestSuspend(Account account) {
+        account.setRequestSuspend(true);
+        accountDao.save(account);
     }
 
     public ArrayList<Account> getSuspendableAccounts() {
-        return accountDao.getAccountsThatRequestSuspension();
+        return accountDao.findByRequestSuspendTrue();
     }
 
-    public void updateAnAccountAsSuspended(String username) {
-        accountDao.updateAccountSuspendedApproved(username);
+    public void updateAnAccountAsSuspended(Account account) {
+        account.setSuspensionApproved(true);
+        accountDao.save(account);
     }
 
     private Account stepsForRegisterAccount(AccountDto dto) {
@@ -64,7 +68,6 @@ public class AccountManager {
         account.setEmail(dto.getEmail());
         return account;
     }
-
 
     public void registerNewAccount(AccountDto dto) {
         Account account = stepsForRegisterAccount(dto);

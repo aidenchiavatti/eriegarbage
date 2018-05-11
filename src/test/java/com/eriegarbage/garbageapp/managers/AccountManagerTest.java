@@ -45,7 +45,7 @@ public class AccountManagerTest {
         List<Account> accounts = new ArrayList<>();
         accounts.add(account);
 
-        when(accountDao.getAccountByUserName("user")).thenReturn(account);
+        when(accountDao.findByUserName("user")).thenReturn(account);
         when(passwordEncoder.encode("password")).thenReturn("encoded");
         when(accountDao.findAll()).thenReturn(accounts);
     }

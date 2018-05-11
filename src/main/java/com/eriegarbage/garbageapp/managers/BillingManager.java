@@ -35,11 +35,11 @@ public class BillingManager {
     }
 
     public List<Bill> getBills(String username) {
-        return billDao.findUnpaidBillsByUsername(username);
+        return billDao.findByAccountUserNameAndTotalGreaterThan(username, 0);
     }
 
-    public void payBill(int billId, PaymentDto paymentDto) throws InvalidPaymentException {
-        Bill bill = billDao.findByBillId(billId);
+    public void payBill(long billId, PaymentDto paymentDto) throws InvalidPaymentException {
+        Bill bill = billDao.findById(billId).get(); //TODO: check for null
         Payment payment = new Payment();
         payment.setDate(Calendar.getInstance().getTime());
         payment.setPaymentTotal(paymentDto.getPaymentAmount());
@@ -51,8 +51,6 @@ public class BillingManager {
         }
 
         //verify and make payment
-
-
         bill.pay(payment);
         billDao.save(bill);
     }

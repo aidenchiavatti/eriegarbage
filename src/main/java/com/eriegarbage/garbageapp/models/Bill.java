@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int billId;
+    private long billId;
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
     private Date dueDate;

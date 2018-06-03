@@ -24,3 +24,11 @@
     height: 60vh;
     margin:0 auto;
 }
+
+.payButton {
+    margin:0 0 0 20px;
+}
+
+#paymentModalForm {
+    text-align:right;
+}

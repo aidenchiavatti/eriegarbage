@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#submitComplaintButton').click(function(e){
         e.preventDefault();
         $.ajax({
-            url:'/submitComplaint',
+            url:'/complaint',
             type:'post',
             data:$('#submitComplaintForm').serialize(),
             success:function(){
@@ -11,27 +11,10 @@ $(document).ready(function(){
         });
     });
 
-    $("#viewComplaintsButton").click(function() {
-        $.ajax({
-            url:'/viewComplaintsTest',
-            type:'get',
-            success:function(result){
-                console.log(result);
-            }
-        });
-    });
-
     $(".viewedButtons").click(function(event) {
-        var obj = {};
-        var temp = event.target.id.substr(6);
-        obj.id = temp;
-        var token = $("input[name='_csrf']").val();
         $.ajax({
-            url:'/markComplaintAsViewed?id=' + obj.id,
+            url:'/admin/complaint/' + event.target.id.substr(6) + '/viewed',
             type:'post',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            },
             success:function(){
                 alert("Complaint Has Been Viewed");
             }
@@ -51,22 +34,16 @@ $(document).ready(function(){
     });
 
     $(".complaintRespSubmitButtons").click(function(event){
-        var temp = event.target.id.substr(14);
-        var inputSelector = "#complaintResponseInput" + temp;
+        var id = event.target.id.substr(14);
+        var inputSelector = "#complaintResponseInput" + id;
         var response = $(inputSelector).val();
-        var token = $("input[name='_csrf']").val();
-
         var data = {};
-        data.id = parseInt(temp);
         data.response = response;
         $.ajax({
-            url:'/respondToComplaint',
+            url:'/admin/complaint/' + parseInt(id) + '/respond',
             type:'post',
             contentType: "application/json",
             data: JSON.stringify(data),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            },
             success:function(){
                 alert("Response Submitted");
             }

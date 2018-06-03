@@ -1,9 +1,9 @@
 package com.eriegarbage.garbageapp.managers;
 
-import com.eriegarbage.garbageapp.dao.AccountDao;
-import com.eriegarbage.garbageapp.dto.AccountDto;
-import com.eriegarbage.garbageapp.dto.OverdueAccountDto;
-import com.eriegarbage.garbageapp.models.Account;
+import com.eriegarbage.garbageapp.account.AccountDao;
+import com.eriegarbage.garbageapp.account.AccountManager;
+import com.eriegarbage.garbageapp.account.dto.AccountDto;
+import com.eriegarbage.garbageapp.account.Account;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -85,6 +85,6 @@ public class AccountManagerTest {
 
     @Test
     public void getOverdueAccounts() {
-        List<OverdueAccountDto> accountDtos = accountManager.getOverdueAccounts();
+        List<Account> accounts = accountManager.getOverdueAccounts();
     }
 }

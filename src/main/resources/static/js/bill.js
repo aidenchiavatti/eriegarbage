@@ -1,37 +1,33 @@
-$(document).ready(function(){
-    $(".payBillButton").click(function (event) {
-        var token = $("input[name='_csrf']").val();
+var app = angular.module('myApp', []);
+app.controller('billController', function($scope, $http) {
+    $('#paymentModal').modal('toggle');
+
+    //set bill for user as table content
+    $http.get("/bill").then(function (response) {$scope.bills = response.data;});
+
+    //sets index of bill to be payed. called when opening payment modal
+    $scope.selectBillForPayment = function(index) {
+        $scope.selectedBillIndex = index;
+    };
+
+    //sends payment. will update table if successful, and close modal
+    $scope.payBill = function () {
         var paymentInfo = {};
-        paymentInfo.cardType = "discover";
-        paymentInfo.cardNumber = "1234";
-        paymentInfo.paymentAmount = 20;
+        paymentInfo.creditCardNumber = $("#paymentCreditCardNumber").val();
+        paymentInfo.paymentTotal = 20;
         $.ajax({
-            url:'/payBill?id=' + event.target.id,
+            url:'/bill/' + $scope.bills[$scope.selectedBillIndex].billId + '/pay',
             type:'post',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            },
             contentType: 'application/json',
             data: JSON.stringify(paymentInfo),
             success:function(){
-                alert("Bill Has Been Paid");
+                $('#paymentModal').modal('toggle');
+                $scope.bills.splice($scope.selectedBillIndex, 1);
+                $scope.$apply();
             },
             error:function(error) {
                 alert(error);
             }
         });
-    });
-
-    $("#submitBillDispute").click(function(event){
-
-    });
-
-    $(".respondDisputeButtons").click(function (event) {
-        selectedId = event.target.id;
-    });
-
-
-    $('#disputeModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
+    };
 });

@@ -1,6 +1,6 @@
 //package com.eriegarbage.garbageapp.dao;
 //
-//import com.eriegarbage.garbageapp.models.Account;
+//import com.eriegarbage.garbageapp.account.Account;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

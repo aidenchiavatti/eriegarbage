@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $('#submitButton').click(function(e){
         e.preventDefault();
-        var token = $("input[name='_csrf']").val();
         var formData = {};
         formData.firstName = $("#firstName").val();
         formData.lastName = $("#lastName").val();
@@ -10,9 +9,6 @@ $(document).ready(function(){
             url:'/submitAccountEdit',
             type:'post',
             contentType: "application/json; charset=utf-8",
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            },
             data:JSON.stringify(formData),
             success:function(){
                 window.location.href = "/viewAccountPage"

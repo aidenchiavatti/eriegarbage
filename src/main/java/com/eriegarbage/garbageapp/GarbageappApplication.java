@@ -1,12 +1,10 @@
 package com.eriegarbage.garbageapp;
 
-import com.eriegarbage.garbageapp.dao.AccountDao;
-import com.eriegarbage.garbageapp.dao.BillDao;
-import com.eriegarbage.garbageapp.dao.ComplaintDao;
-import com.eriegarbage.garbageapp.dao.PaymentDao;
-import com.eriegarbage.garbageapp.managers.AccountManager;
-import com.eriegarbage.garbageapp.managers.BillingManager;
-import com.eriegarbage.garbageapp.models.Account;
+import com.eriegarbage.garbageapp.account.AccountDao;
+import com.eriegarbage.garbageapp.complaint.ComplaintDao;
+import com.eriegarbage.garbageapp.account.AccountManager;
+import com.eriegarbage.garbageapp.bill.BillService;
+import com.eriegarbage.garbageapp.account.Account;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
-import static com.eriegarbage.garbageapp.TestConstants.*;
+import static com.eriegarbage.garbageapp.system.TestConstants.*;
 
 @SpringBootApplication
 public class GarbageappApplication {
@@ -26,7 +24,7 @@ public class GarbageappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AccountDao accountDao, ComplaintDao complaintDao, AccountManager accountManager, BillingManager billingManager) {
+	public CommandLineRunner demo(AccountDao accountDao, ComplaintDao complaintDao, AccountManager accountManager, BillService billService) {
 		return (args) -> {
 			accountManager.registerNewAccount(DEFAULT_ACCOUNT_DTO);
 			accountManager.registerNewAdmin(ADMIN_ACCOUNT_DTO);
@@ -42,8 +40,8 @@ public class GarbageappApplication {
 			complaintDao.save(COMPLAINT_1);
 			complaintDao.save(COMPLAINT_2);
 
-			long billId = (billingManager.getBills(DEFAULT_USERNAME).get(2).getBillId());
-			billingManager.payBill(billId, PAYMENT_DTO_1);
+			long billId = (billService.getBillsForUser(DEFAULT_USERNAME).get(2).getBillId());
+			billService.payBill(billId, PAYMENT_1);
 		};
 	}
 
